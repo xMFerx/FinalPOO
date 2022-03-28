@@ -12,7 +12,7 @@ public class SQLadmMethods extends SQLconnection{
 		PreparedStatement ps = null;
 		Connection con = getConnection();
 		
-		String sql = "INSERT INTO administrators (admName, admAdminName, admPass, admCity, admEmail, admTel, admBirthday, admRegisterDate) VALUES (?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO administrators (admName, admUserName, admPass, admCity, admEmail, admTel, admBirthday, admRegisterDate) VALUES (?,?,?,?,?,?,?,?)";
 		
 		try 
 		{
@@ -50,7 +50,7 @@ public class SQLadmMethods extends SQLconnection{
 		PreparedStatement ps = null;
 		Connection con = getConnection();
 		
-		String sql = "UPDATE administrators SET admName=?, admAdminName=?, admPass=?, admCity=?, admEmail=?, admTel=?, admBirthday=?, admRegisterDate=? WHERE idadm=?";
+		String sql = "UPDATE administrators SET admName=?, admUserName=?, admPass=?, admCity=?, admEmail=?, admTel=?, admBirthday=?, admRegisterDate=? WHERE idadm=?";
 		
 		try 
 		{
@@ -120,7 +120,7 @@ public class SQLadmMethods extends SQLconnection{
 		ResultSet rs = null;
 		Connection con = getConnection();
 		
-		String sql = "SELECT * FROM administrators WHERE admAdminName=?";
+		String sql = "SELECT * FROM administrators WHERE admUserName=?";
 		
 		try 
 		{
@@ -132,7 +132,7 @@ public class SQLadmMethods extends SQLconnection{
 			{
 				adm.setId(rs.getInt("idadm"));
 				adm.setName(rs.getString("admName"));
-				adm.setUserName(rs.getString("admAdminName"));							
+				adm.setUserName(rs.getString("admUserName"));							
 				adm.setPassword(rs.getString("admPassword"));
 				adm.setCity(rs.getString("admCity"));
 				adm.setEmail(rs.getString("admEmail"));

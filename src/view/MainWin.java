@@ -3,6 +3,7 @@ package view;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 
@@ -44,15 +45,30 @@ public class MainWin extends JFrame {
 		setTitle("Wayne Enterprise Store");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1020, 760);
-				
+	}		
+
+	public void IniPanelSignUpUser()
+	{
+		//getContentPane().removeAll();
 		PanelRegistro = new SignUpPanelUsers();
 		PanelRegistro.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(PanelRegistro);
-		//getContentPane().removeAll();			
-		
-		/*PanelAcceso = new LoginPanel();
+		setContentPane(PanelRegistro);
+		PanelRegistro.setLayout(null);
+		this.invalidate();
+		this.validate();
+		this.repaint();
+	}
+	
+	public void IniPanelLogIn()
+	{
+		getContentPane().removeAll();		
+		PanelAcceso = new LoginPanel();
 		PanelAcceso.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//setContentPane(PanelAcceso);
-		PanelAcceso.setLayout(null);		*/	
-	}		
+		setContentPane(PanelAcceso);
+		PanelAcceso.setLayout(null);
+		this.invalidate();
+		this.validate();
+		this.repaint();
+	}
+	
 }

@@ -28,7 +28,7 @@ public class SQLcstmMethods extends SQLconnection{
 			ps.setDate(7, (Date) us.getbirthday());
 			ps.setString(8, us.getRegisterDate());					
 			ps.execute();
-			return true;
+			return true; 	
 		}catch(SQLException SQLex)
 		{
 			System.err.println(SQLex);

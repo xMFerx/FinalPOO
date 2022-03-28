@@ -15,6 +15,11 @@ import javax.swing.border.LineBorder;
 public class LoginPanel extends JPanel {
 	private JTextField txtUser;
 	private JPasswordField passwordField;
+	private JButton btnLogIn;
+	private JButton btnPassRecover;
+	private JButton btnSignUp;
+	private JButton btnLogInAdmins; 
+	
 	public LoginPanel() {
 		setBackground(new Color(167, 134, 130));
 		setLayout(null);
@@ -44,7 +49,7 @@ public class LoginPanel extends JPanel {
 		TitleLabel.setBounds(713, 57, 237, 98);
 		add(TitleLabel);
 		
-		JButton btnLogIn = new JButton("Acceder");
+		btnLogIn = new JButton("Acceder");
 		btnLogIn.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, new Color(0, 0, 0)));
 		btnLogIn.setForeground(Color.LIGHT_GRAY);
 		btnLogIn.setBackground(new Color(81, 52, 77));
@@ -71,7 +76,7 @@ public class LoginPanel extends JPanel {
 		lblCompanyLogo.setBounds(0, 0, 730, 720);
 		add(lblCompanyLogo);
 		
-		JButton btnPassRecover = new JButton("Olvid\u00E9 mi contrase\u00F1a ");
+		btnPassRecover = new JButton("Olvid\u00E9 mi contrase\u00F1a ");
 		btnPassRecover.setBackground(new Color(167, 134, 130));
 		btnPassRecover.setBorder(null);
 		btnPassRecover.setForeground(Color.DARK_GRAY);
@@ -80,7 +85,7 @@ public class LoginPanel extends JPanel {
 		btnPassRecover.setBounds(802, 590, 144, 23);
 		add(btnPassRecover);
 		
-		JButton btnSignUp = new JButton("Registrarme ");
+		btnSignUp = new JButton("Registrarme ");
 		btnSignUp.setBackground(new Color(167, 134, 130));
 		btnSignUp.setHorizontalAlignment(SwingConstants.RIGHT);
 		btnSignUp.setForeground(Color.DARK_GRAY);
@@ -89,7 +94,7 @@ public class LoginPanel extends JPanel {
 		btnSignUp.setBounds(802, 553, 144, 26);
 		add(btnSignUp);
 		
-		JButton btnLogInAdmins = new JButton("Acceso para Administradores ");
+		btnLogInAdmins = new JButton("Acceso para Administradores ");
 		btnLogInAdmins.setBackground(new Color(167, 134, 130));
 		btnLogInAdmins.setHorizontalAlignment(SwingConstants.RIGHT);
 		btnLogInAdmins.setForeground(Color.DARK_GRAY);
@@ -98,5 +103,29 @@ public class LoginPanel extends JPanel {
 		btnLogInAdmins.setBounds(789, 624, 157, 20);
 		add(btnLogInAdmins);
 		
+	}
+
+	public JTextField getTxtUser() {
+		return txtUser;
+	}
+
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
+
+	public JButton getBtnLogIn() {
+		return btnLogIn;
+	}
+
+	public JButton getBtnPassRecover() {
+		return btnPassRecover;
+	}
+
+	public JButton getBtnSignUp() {
+		return btnSignUp;
+	}
+
+	public JButton getBtnLogInAdmins() {
+		return btnLogInAdmins;
 	}
 }

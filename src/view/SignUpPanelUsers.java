@@ -155,7 +155,7 @@ public class SignUpPanelUsers extends JPanel {
 		txtBirthDay.setBounds(450, 548, 120, 20);
 		add(txtBirthDay);
 		
-		btnFinish = new JButton("Continuar");
+		btnFinish = new JButton("Registrarme");
 		btnFinish.setBorder(null);
 		btnFinish.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
 		btnFinish.setForeground(new Color(255, 255, 204));
@@ -163,7 +163,7 @@ public class SignUpPanelUsers extends JPanel {
 		btnFinish.setBounds(410, 613, 200, 50);
 		add(btnFinish);
 		
-		txtMessage = new JTextField("");
+		txtMessage = new JTextField("...");
 		txtMessage.setBorder(null);
 		txtMessage.setBackground(new Color(158, 144, 134));
 		txtMessage.setEditable(false);
