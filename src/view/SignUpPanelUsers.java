@@ -163,7 +163,7 @@ public class SignUpPanelUsers extends JPanel {
 		btnFinish.setBounds(410, 613, 200, 50);
 		add(btnFinish);
 		
-		txtMessage = new JTextField("...");
+		txtMessage = new JTextField("");
 		txtMessage.setBorder(null);
 		txtMessage.setBackground(new Color(158, 144, 134));
 		txtMessage.setEditable(false);

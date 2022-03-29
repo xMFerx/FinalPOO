@@ -21,22 +21,6 @@ public class MainWin extends JFrame {
 	}	
 
 	/**
-	 * Launch the application.
-	 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainWin frame = new MainWin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-
-	/**
 	 * Create the frame.
 	 */
 	public MainWin() {
@@ -45,13 +29,19 @@ public class MainWin extends JFrame {
 		setTitle("Wayne Enterprise Store");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1020, 760);
+		
+		PanelRegistro = new SignUpPanelUsers();
+		PanelRegistro.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		PanelAcceso = new LoginPanel();
+		PanelAcceso.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		
 	}		
 
 	public void IniPanelSignUpUser()
 	{
-		//getContentPane().removeAll();
-		PanelRegistro = new SignUpPanelUsers();
-		PanelRegistro.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().removeAll();		
 		setContentPane(PanelRegistro);
 		PanelRegistro.setLayout(null);
 		this.invalidate();
@@ -61,9 +51,7 @@ public class MainWin extends JFrame {
 	
 	public void IniPanelLogIn()
 	{
-		getContentPane().removeAll();		
-		PanelAcceso = new LoginPanel();
-		PanelAcceso.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().removeAll();				
 		setContentPane(PanelAcceso);
 		PanelAcceso.setLayout(null);
 		this.invalidate();

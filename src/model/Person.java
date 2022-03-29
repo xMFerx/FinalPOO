@@ -1,6 +1,7 @@
 package model;
 
-import java.util.Date;
+
+import java.sql.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

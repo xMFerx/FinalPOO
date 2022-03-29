@@ -13,7 +13,7 @@ public class Controller implements ActionListener{
 	
 	private User usr = new User();
 	private MainWin VenPrincipal;
-	private SQLcstmMethods SQLCustomers;
+	private SQLcstmMethods SQLCustomers = new SQLcstmMethods();
 	
 	public Controller () {
 		VenPrincipal = new MainWin();
@@ -22,20 +22,26 @@ public class Controller implements ActionListener{
 		VenPrincipal.getPanelRegistro().getBtnFinish().addActionListener(this);
 		//VenPrincipal.IniPanelLogIn();
 		//VenPrincipal.getPanelAcceso().getBtnSignUp().addActionListener(this);
-		
-		
+				
 		System.out.println("Cargando...");
 		
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		/*
+		 * Log In
+		 */		
+		if(e.getSource() == VenPrincipal.getPanelAcceso().getBtnSignUp()) {
+			VenPrincipal.IniPanelSignUpUser();
+		}
+		
 		/*
 		 * Sign up 
 		 */		
 		if(e.getSource() == VenPrincipal.getPanelRegistro().getBtnFinish())
 		{
-			
 			VenPrincipal.getPanelRegistro().getTxtMessage().setText("");
 			try {				
 				usr.setName(VenPrincipal.getPanelRegistro().getTxtName().getText());
@@ -49,15 +55,18 @@ public class Controller implements ActionListener{
 				{
 					VenPrincipal.getPanelRegistro().getTxtMessage().setText("Contraseña invalida");	
 				}
-			    else {
+			    else
+			    {
 			    	VenPrincipal.getPanelRegistro().getTxtMessage().setText("Cuenta creada!");
 			    	lockAnswers();
-			    	VenPrincipal.getPanelRegistro().getBtnFinish().setText("Continuar");
-			    	VenPrincipal.getPanelRegistro().getBtnFinish() ;
+			    	if (SQLCustomers.SignUpUser(usr))
+					{VenPrincipal.getPanelRegistro().getTxtMessage().setText("Registro Guardado");}
+			    	else
+			    	{VenPrincipal.getPanelRegistro().getTxtMessage().setText("Error en la base de datos");}
+			    	VenPrincipal.getPanelRegistro().getBtnFinish().setText("Continuar");			    	
 			    	TimeUnit.SECONDS.sleep(1);
 			    	if(e.getSource() == VenPrincipal.getPanelRegistro().getBtnFinish())
-			    	{
-			    		System.out.println("pressed!");
+			    	{			    		
 			    		VenPrincipal.IniPanelLogIn();
 			    		VenPrincipal.getPanelAcceso().getBtnSignUp().addActionListener(this);
 			    	}
@@ -70,29 +79,9 @@ public class Controller implements ActionListener{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
-			//imprimir usr todos los datos, revisar q falla (sugerencia: Date)
-			
-			/*if (SQLCustomers.SignUpUser(usr))
-			{
-				VenPrincipal.getPanelRegistro().getTxtMessage().setText("Registro Guardado");
-				lockAnswers();
-			}else
-			{
-				VenPrincipal.getPanelRegistro().getTxtMessage().setText("Error encontrado");
-			}*/
-		}
-		
-		if(e.getSource() == VenPrincipal.getPanelAcceso().getBtnSignUp()) {
-			VenPrincipal.IniPanelSignUpUser();
 		}
 	}
-	
-	/*
-	 * 
-	 * Sign up 
-	 * 
-	 */
+
 	public void lockAnswers()
 	{
 		VenPrincipal.getPanelRegistro().getTxtBirthDay().setEnabled(false);
@@ -103,8 +92,6 @@ public class Controller implements ActionListener{
 		VenPrincipal.getPanelRegistro().getTxtUserName().setEnabled(false);
 		VenPrincipal.getPanelRegistro().getPasswordField().setEnabled(false);
 	}
-	
-	//Login (if for changePassword())
 	
 	//Admin
 	
