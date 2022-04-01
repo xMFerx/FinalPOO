@@ -41,7 +41,7 @@ public class MainWin extends JFrame {
 
 	public void IniPanelSignUpUser()
 	{
-		getContentPane().removeAll();		
+		//getContentPane().removeAll();
 		setContentPane(PanelRegistro);
 		PanelRegistro.setLayout(null);
 		this.invalidate();
@@ -51,7 +51,7 @@ public class MainWin extends JFrame {
 	
 	public void IniPanelLogIn()
 	{
-		getContentPane().removeAll();				
+		//getContentPane().removeAll();
 		setContentPane(PanelAcceso);
 		PanelAcceso.setLayout(null);
 		this.invalidate();

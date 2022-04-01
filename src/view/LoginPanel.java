@@ -19,6 +19,7 @@ public class LoginPanel extends JPanel {
 	private JButton btnPassRecover;
 	private JButton btnSignUp;
 	private JButton btnLogInAdmins; 
+	private JTextField txtMessage;
 	
 	public LoginPanel() {
 		setBackground(new Color(167, 134, 130));
@@ -103,7 +104,28 @@ public class LoginPanel extends JPanel {
 		btnLogInAdmins.setBounds(789, 624, 157, 20);
 		add(btnLogInAdmins);
 		
+		txtMessage = new JTextField("");
+		txtMessage.setBorder(null);
+		txtMessage.setBackground(new Color(167, 134, 130));
+		txtMessage.setEditable(false);
+		txtMessage.setEnabled(false);
+		txtMessage.setHorizontalAlignment(SwingConstants.CENTER);
+		txtMessage.setFont(new Font("Malgun Gothic", Font.ITALIC, 11));
+		txtMessage.setBounds(760, 368, 230, 20);
+		add(txtMessage);		
+		
 	}
+
+	
+	public JTextField getTxtMessage() {
+		return txtMessage;
+	}
+
+
+	public void setTxtMessage(JTextField txtMessage) {
+		this.txtMessage = txtMessage;
+	}
+
 
 	public JTextField getTxtUser() {
 		return txtUser;

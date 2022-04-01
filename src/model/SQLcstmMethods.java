@@ -140,8 +140,51 @@ public class SQLcstmMethods extends SQLconnection{
 				us.setTelephone(rs.getInt("cstmTel"));
 				us.setbirthday(rs.getDate("cstmBirthday"));
 				us.setRegisterDate(rs.getString("cstmRegisterDate"));	
-				return true;
-				
+				return true;			
+			}
+			return false;
+		}catch(SQLException SQLex)
+		{
+			System.err.println(SQLex);
+			return false;
+		}finally
+		{
+			try 
+			{
+				con.close();				
+			}catch(SQLException SQLex2)
+			{
+				System.err.println(SQLex2);
+			}
+		}		
+	}
+	
+	public boolean LogInUser(User us)
+	{
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConnection();
+		
+		String sql = "SELECT idcstm, cstmUserName, cstmPass, cstmEmail FROM customers WHERE cstmUserName=?";
+		
+		try 
+		{
+			ps = con.prepareStatement(sql);
+			ps.setString(1, us.getUserName());
+			rs = ps.executeQuery();
+			
+			if (rs.next())
+			{
+				if(us.getPassword().equals(rs.getString(3)))
+				{
+					us.setId(rs.getInt(1));	
+					us.setEmail(rs.getString(4));
+					return true;
+				}
+				else
+				{
+					return false;
+				}	
 			}
 			return false;
 		}catch(SQLException SQLex)
@@ -158,6 +201,5 @@ public class SQLcstmMethods extends SQLconnection{
 				System.err.println(SQLex2);
 			}
 		}
-		
 	}
 }

@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
-import javax.swing.border.EtchedBorder;
 
 public class SignUpPanelUsers extends JPanel {
 	private JTextField txtUserName;
