@@ -22,7 +22,7 @@ public class Controller implements ActionListener{
 	public Controller () {
 		VenPrincipal = new MainWin();
 		VenPrincipal.setVisible(true);
-		goToCatalogue();
+		goToLogIn();
 				
 		System.out.println("Cargando...");
 		
