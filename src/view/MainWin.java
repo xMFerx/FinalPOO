@@ -11,7 +11,7 @@ public class MainWin extends JFrame {
 
 	private SignUpPanelUsers PanelRegistro;
 	private LoginPanel PanelAcceso;	
-	private CataloguePanel PanelCatalogo;
+	//private CataloguePanel PanelCatalogo;
 	
 	public SignUpPanelUsers getPanelRegistro() {
 		return PanelRegistro;
@@ -37,7 +37,7 @@ public class MainWin extends JFrame {
 		PanelAcceso = new LoginPanel();
 		PanelAcceso.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
-		PanelCatalogo = new CataloguePanel();
+		//PanelCatalogo = new CataloguePanel();
 	}		
 
 	public void IniPanelSignUpUser()
@@ -63,8 +63,8 @@ public class MainWin extends JFrame {
 	public void IniPanelCatalogue()
 	{
 		//getContentPane().removeAll();
-		setContentPane(PanelCatalogo);
-		PanelCatalogo.setLayout(null);
+		//setContentPane(PanelCatalogo);
+		//PanelCatalogo.setLayout(null);
 		this.invalidate();
 		this.validate();
 		this.repaint();

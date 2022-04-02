@@ -42,7 +42,7 @@ public class AdmPanel extends JPanel {
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(AdmPanel.class.getResource("/view/icons/SignUpBG.png")));
-		lblNewLabel_1.setBounds(0, 0, 1020, 760);
+		lblNewLabel_1.setBounds(21, -51, 589, 619);
 		add(lblNewLabel_1);
 
 	}
