@@ -22,7 +22,7 @@ public class Controller implements ActionListener{
 	public Controller () {
 		VenPrincipal = new MainWin();
 		VenPrincipal.setVisible(true);
-		goToLogIn();		
+		goToCatalogue();
 				
 		System.out.println("Cargando...");
 		
@@ -58,8 +58,7 @@ public class Controller implements ActionListener{
 		 * Sign up Panel
 		 */		
 		if(e.getSource() == VenPrincipal.getPanelRegistro().getBtnFinish()) //Register Button
-		{	
-			JButton btn = (JButton) e.getSource();
+		{				
 			if (doubleClick == (JButton) e.getSource()) 					//2nd click
 			{
 				goToLogIn();
@@ -102,6 +101,14 @@ public class Controller implements ActionListener{
 		/*
 		 * Catalog Panel
 		 */	
+		
+		/*
+		 * Admin Panel 
+		 */
+		
+		/*		 
+		 * User Profile Window 
+		 */
 	}
 
 	public void lockAnswersSignUp()
@@ -130,8 +137,19 @@ public class Controller implements ActionListener{
 		VenPrincipal.getPanelRegistro().getBtnFinish().addActionListener(this);
 	}
 	
-	public void goToCatalogue(){
-		System.out.println("catalogue");
+	public void goToCatalogue()
+	{
+		VenPrincipal.IniPanelCatalogue();
+	}
+	
+	public void goToAdminPanel()
+	{
+		
+	}	
+	
+	public void OpenUserProfileWin() 
+	{
+		//
 	}
 	
 	public void Sleep(int i)

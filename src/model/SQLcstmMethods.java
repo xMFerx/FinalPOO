@@ -111,8 +111,7 @@ public class SQLcstmMethods extends SQLconnection{
 			{
 				System.err.println(SQLex2);
 			}
-		}
-		
+		}		
 	}
 
 	public boolean FindUser(User us)
