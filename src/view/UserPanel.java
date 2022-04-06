@@ -17,24 +17,31 @@ public class UserPanel extends JPanel {
 	private JTextField txtUserName;
 	private JTextField txtName;
 	private JTextField txtEmail;
-	private JTextField textNum;
-	private JTextField txtAddress;
-	private JTextField textId;
-	private JTextField textDate;
+	private JTextField txtTel;
+	private JTextField txtId;
+	private JTextField txtBirthday;
 	private JTextField txtCity;
+	private JButton btnPurHistory;
+	private JButton btnWishlist;
+	private JButton btnEdit;
+	private JButton btnSaveEdit;
+	private JButton btnDelete;
+	private JTextField txtMessage;
+	private JButton btnGoBack;
 
 	public UserPanel() {
 		setMinimumSize(new Dimension(1020, 720));
 		setLayout(null);
 		
-		JLabel lblNewLabel = 
+		JLabel lblID = 
 		new JLabel("Id #");
-		lblNewLabel.setFont(new Font("morgenlicht", Font.PLAIN, 30));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(438, 108, 95, 45);
-		add(lblNewLabel);
+		lblID.setFont(new Font("morgenlicht", Font.PLAIN, 30));
+		lblID.setHorizontalAlignment(SwingConstants.CENTER);
+		lblID.setBounds(438, 108, 95, 45);
+		add(lblID);
 		
 		txtUserName = new JTextField();
+		txtUserName.setOpaque(false);
 		txtUserName.setBorder(null);
 		txtUserName.setHorizontalAlignment(SwingConstants.CENTER);
 		txtUserName.setText("ChanguaLover user");
@@ -44,19 +51,20 @@ public class UserPanel extends JPanel {
 		add(txtUserName);
 		txtUserName.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setIcon(new ImageIcon(UserPanel.class.getResource("/view/icons/SmallLogo.png")));
-		lblNewLabel_1.setBounds(192, 93, 133, 131);
-		add(lblNewLabel_1);
+		JLabel lblLogo = new JLabel("");
+		lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLogo.setIcon(new ImageIcon(UserPanel.class.getResource("/view/icons/SmallLogo.png")));
+		lblLogo.setBounds(192, 93, 133, 131);
+		add(lblLogo);
 		
-		JLabel lblId = new JLabel("Name.");
+		JLabel lblId = new JLabel("Nombre");
 		lblId.setHorizontalAlignment(SwingConstants.CENTER);
 		lblId.setFont(new Font("morgenlicht", Font.PLAIN, 22));
 		lblId.setBounds(90, 234, 119, 45);
 		add(lblId);
 		
 		txtName = new JTextField();
+		txtName.setOpaque(false);
 		txtName.setText("Heladero");
 		txtName.setHorizontalAlignment(SwingConstants.LEFT);
 		txtName.setFont(new Font("Saudagar", Font.PLAIN, 24));
@@ -78,13 +86,8 @@ public class UserPanel extends JPanel {
 		lblTel.setBounds(90, 346, 119, 45);
 		add(lblTel);
 		
-		JLabel lblAddress = new JLabel("Address.");
-		lblAddress.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAddress.setFont(new Font("morgenlicht", Font.PLAIN, 22));
-		lblAddress.setBounds(90, 402, 119, 45);
-		add(lblAddress);
-		
 		txtEmail = new JTextField();
+		txtEmail.setOpaque(false);
 		txtEmail.setText("Changua@Lover.com");
 		txtEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		txtEmail.setFont(new Font("Saudagar", Font.PLAIN, 24));
@@ -94,106 +97,241 @@ public class UserPanel extends JPanel {
 		txtEmail.setBounds(233, 291, 481, 45);
 		add(txtEmail);
 		
-		textNum = new JTextField();
-		textNum.setText("654211");
-		textNum.setHorizontalAlignment(SwingConstants.LEFT);
-		textNum.setFont(new Font("Saudagar", Font.PLAIN, 24));
-		textNum.setEditable(false);
-		textNum.setColumns(10);
-		textNum.setBorder(null);
-		textNum.setBounds(233, 346, 278, 45);
-		add(textNum);
+		txtTel = new JTextField();
+		txtTel.setOpaque(false);
+		txtTel.setText("654211");
+		txtTel.setHorizontalAlignment(SwingConstants.LEFT);
+		txtTel.setFont(new Font("Saudagar", Font.PLAIN, 24));
+		txtTel.setEditable(false);
+		txtTel.setColumns(10);
+		txtTel.setBorder(null);
+		txtTel.setBounds(233, 346, 278, 45);
+		add(txtTel);
 		
-		txtAddress = new JTextField();
-		txtAddress.setText("Av siempre viva #123");
-		txtAddress.setHorizontalAlignment(SwingConstants.LEFT);
-		txtAddress.setFont(new Font("Saudagar", Font.PLAIN, 24));
-		txtAddress.setEditable(false);
-		txtAddress.setColumns(10);
-		txtAddress.setBorder(null);
-		txtAddress.setBounds(233, 402, 442, 45);
-		add(txtAddress);
+		txtId = new JTextField();
+		txtId.setOpaque(false);
+		txtId.setText("221555");
+		txtId.setHorizontalAlignment(SwingConstants.LEFT);
+		txtId.setFont(new Font("Saudagar", Font.PLAIN, 32));
+		txtId.setEditable(false);
+		txtId.setColumns(10);
+		txtId.setBorder(null);
+		txtId.setBounds(529, 108, 313, 45);
+		add(txtId);
 		
-		textId = new JTextField();
-		textId.setText("221555");
-		textId.setHorizontalAlignment(SwingConstants.LEFT);
-		textId.setFont(new Font("Saudagar", Font.PLAIN, 32));
-		textId.setEditable(false);
-		textId.setColumns(10);
-		textId.setBorder(null);
-		textId.setBounds(529, 108, 313, 45);
-		add(textId);
-		
-		JLabel lblBirthday = new JLabel("Birthday.");
+		JLabel lblBirthday = new JLabel("Nacimiento");
 		lblBirthday.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBirthday.setFont(new Font("morgenlicht", Font.PLAIN, 22));
-		lblBirthday.setBounds(529, 346, 119, 45);
+		lblBirthday.setBounds(529, 234, 146, 45);
 		add(lblBirthday);
 		
-		textDate = new JTextField();
-		textDate.setText("6-5-2011");
-		textDate.setHorizontalAlignment(SwingConstants.LEFT);
-		textDate.setFont(new Font("Saudagar", Font.PLAIN, 24));
-		textDate.setEditable(false);
-		textDate.setColumns(10);
-		textDate.setBorder(null);
-		textDate.setBounds(690, 346, 173, 45);
-		add(textDate);
+		txtBirthday = new JTextField();
+		txtBirthday.setOpaque(false);
+		txtBirthday.setText("6-5-2011");
+		txtBirthday.setHorizontalAlignment(SwingConstants.LEFT);
+		txtBirthday.setFont(new Font("Saudagar", Font.PLAIN, 24));
+		txtBirthday.setEditable(false);
+		txtBirthday.setColumns(10);
+		txtBirthday.setBorder(null);
+		txtBirthday.setBounds(692, 235, 173, 45);
+		add(txtBirthday);
 		
-		JButton btnPurHistory = new JButton("Purchase history");
+		btnPurHistory = new JButton("Historial de Compras");
 		btnPurHistory.setFont(new Font("Saudagar", Font.PLAIN, 22));
-		btnPurHistory.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnPurHistory.setBounds(90, 541, 201, 37);
+		btnPurHistory.setBounds(90, 541, 223, 37);
 		add(btnPurHistory);
 		
-		JButton btnWishlist = new JButton("Wishlist");
+		btnWishlist = new JButton("Lista de Deseos");
 		btnWishlist.setFont(new Font("Saudagar", Font.PLAIN, 22));
-		btnWishlist.setBounds(90, 612, 201, 37);
+		btnWishlist.setBounds(90, 612, 223, 37);
 		add(btnWishlist);
 		
-		JButton btnEdit = new JButton(" Edit");
-		btnEdit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnEdit = new JButton("Editar");
 		btnEdit.setHorizontalAlignment(SwingConstants.LEFT);
 		btnEdit.setContentAreaFilled(false);
 		btnEdit.setIcon(new ImageIcon(UserPanel.class.getResource("/view/icons/Edit.png")));
 		btnEdit.setFont(new Font("Saudagar", Font.PLAIN, 16));
-		btnEdit.setBounds(836, 529, 116, 60);
+		btnEdit.setBounds(819, 529, 133, 60);
 		add(btnEdit);
 		
-		JButton btnDelate = new JButton("Delate");
-		btnDelate.setHorizontalAlignment(SwingConstants.LEFT);
-		btnDelate.setIcon(new ImageIcon(UserPanel.class.getResource("/view/icons/Bin.png")));
-		btnDelate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnDelate.setFont(new Font("Saudagar", Font.PLAIN, 16));
-		btnDelate.setContentAreaFilled(false);
-		btnDelate.setBounds(833, 600, 119, 60);
-		add(btnDelate);
+		btnSaveEdit = new JButton("Guardar");
+		btnSaveEdit.setHorizontalAlignment(SwingConstants.LEFT);
+		btnSaveEdit.setContentAreaFilled(false);
+		btnSaveEdit.setIcon(new ImageIcon(UserPanel.class.getResource("/view/icons/Edit.png")));
+		btnSaveEdit.setFont(new Font("Saudagar", Font.PLAIN, 16));
+		btnSaveEdit.setBounds(819, 529, 133, 60);
+		btnSaveEdit.setVisible(false);
+		add(btnSaveEdit);
 		
-		JLabel lblCity = new JLabel("City.");
+		btnDelete = new JButton("Eliminar");
+		btnDelete.setHorizontalAlignment(SwingConstants.LEFT);
+		btnDelete.setIcon(new ImageIcon(UserPanel.class.getResource("/view/icons/Bin.png")));
+		btnDelete.setFont(new Font("Saudagar", Font.PLAIN, 16));
+		btnDelete.setContentAreaFilled(false);
+		btnDelete.setBounds(819, 600, 133, 60);
+		add(btnDelete);
+		
+		JLabel lblCity = new JLabel("Ciudad");
 		lblCity.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCity.setFont(new Font("morgenlicht", Font.PLAIN, 22));
-		lblCity.setBounds(90, 458, 119, 45);
+		lblCity.setBounds(90, 402, 119, 45);
 		add(lblCity);
 		
 		txtCity = new JTextField();
+		txtCity.setOpaque(false);
 		txtCity.setText("Springfield");
 		txtCity.setHorizontalAlignment(SwingConstants.LEFT);
 		txtCity.setFont(new Font("Saudagar", Font.PLAIN, 24));
 		txtCity.setEditable(false);
 		txtCity.setColumns(10);
 		txtCity.setBorder(null);
-		txtCity.setBounds(233, 458, 278, 45);
+		txtCity.setBounds(233, 402, 278, 45);
 		add(txtCity);
 		
-
+		txtMessage = new JTextField();
+		txtMessage.setOpaque(false);
+		txtMessage.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtMessage.setFont(new Font("Saudagar", Font.PLAIN, 15));
+		txtMessage.setEditable(false);
+		txtMessage.setColumns(10);
+		txtMessage.setBorder(null);
+		txtMessage.setBounds(529, 440, 481, 45);
+		add(txtMessage);
+		
+		btnGoBack = new JButton("Volver al catalogo\r\n");
+		btnGoBack.setIcon(new ImageIcon(UserPanel.class.getResource("/view/icons/GoBackIcon.png")));
+		btnGoBack.setHorizontalAlignment(SwingConstants.LEFT);
+		btnGoBack.setFont(new Font("Saudagar", Font.PLAIN, 15));
+		btnGoBack.setBorder(null);
+		btnGoBack.setContentAreaFilled(false);
+		btnGoBack.setBounds(46, 30, 187, 52);
+		add(btnGoBack);
 	}
+	
+	
+
+	public JButton getBtnSaveEdit() {
+		return btnSaveEdit;
+	}
+
+
+
+	public void setBtnSaveEdit(JButton btnSaveEdit) {
+		this.btnSaveEdit = btnSaveEdit;
+	}
+
+
+
+	public JButton getBtnGoBack() {
+		return btnGoBack;
+	}
+
+
+
+	public void setBtnGoBack(JButton btnGoBack) {
+		this.btnGoBack = btnGoBack;
+	}
+
+
+
+	public JTextField getTxtMessage() {
+		return txtMessage;
+	}
+
+
+
+	public void setTxtMessage(JTextField txtMessage) {
+		this.txtMessage = txtMessage;
+	}
+
+
+
+	public JTextField getTxtUserName() {
+		return txtUserName;
+	}
+
+	public void setTxtUserName(JTextField txtUserName) {
+		this.txtUserName = txtUserName;
+	}
+
+	public JTextField getTxtName() {
+		return txtName;
+	}
+
+	public void setTxtName(JTextField txtName) {
+		this.txtName = txtName;
+	}
+
+	public JTextField getTxtEmail() {
+		return txtEmail;
+	}
+
+	public void setTxtEmail(JTextField txtEmail) {
+		this.txtEmail = txtEmail;
+	}
+
+	public JTextField getTxtTel() {
+		return txtTel;
+	}
+
+	public void setTxtTel(JTextField txtTel) {
+		this.txtTel = txtTel;
+	}
+
+	public JTextField getTxtId() {
+		return txtId;
+	}
+
+	public void setTxtId(JTextField txtId) {
+		this.txtId = txtId;
+	}
+
+	public JTextField getTxtBirthday() {
+		return txtBirthday;
+	}
+
+	public void setTxtBirthday(JTextField txtBirthday) {
+		this.txtBirthday = txtBirthday;
+	}
+
+	public JTextField getTxtCity() {
+		return txtCity;
+	}
+
+	public void setTxtCity(JTextField txtCity) {
+		this.txtCity = txtCity;
+	}
+
+	public JButton getBtnPurHistory() {
+		return btnPurHistory;
+	}
+
+	public void setBtnPurHistory(JButton btnPurHistory) {
+		this.btnPurHistory = btnPurHistory;
+	}
+
+	public JButton getBtnWishlist() {
+		return btnWishlist;
+	}
+
+	public void setBtnWishlist(JButton btnWishlist) {
+		this.btnWishlist = btnWishlist;
+	}
+
+	public JButton getBtnEdit() {
+		return btnEdit;
+	}
+
+	public void setBtnEdit(JButton btnEdit) {
+		this.btnEdit = btnEdit;
+	}
+
+	public JButton getBtnDelete() {
+		return btnDelete;
+	}
+
+	public void setBtnDelete(JButton btnDelete) {
+		this.btnDelete = btnDelete;
+	}
+	
 }

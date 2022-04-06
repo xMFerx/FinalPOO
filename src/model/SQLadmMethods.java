@@ -156,7 +156,56 @@ public class SQLadmMethods extends SQLconnection{
 			{
 				System.err.println(SQLex2);
 			}
-		}
+		}		
+	}
+	
+	public boolean LogInAdmin(Admin adm)
+	{
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConnection();
 		
+		String sql = "SELECT idadm, admUserName, admPass, admEmail, admName, admCity, admTel, admBirthday, admRegisterDate FROM administrators WHERE admUserName=?";
+		
+		try 
+		{
+			ps = con.prepareStatement(sql);
+			ps.setString(1, adm.getUserName());
+			rs = ps.executeQuery();
+			
+			if (rs.next())
+			{				
+				if(adm.getPassword().equals(rs.getString(3)))
+				{
+					adm.setId(rs.getInt(1));	
+					adm.setEmail(rs.getString(4));
+					adm.setName(rs.getString(5));
+					adm.setCity(rs.getString(6));
+					adm.setTelephone(rs.getInt(7));
+					adm.setbirthday(rs.getDate(8));
+					adm.setRegisterDate(rs.getString(9));
+					
+					return true;
+				}
+				else
+				{
+					return false;
+				}	
+			}
+			return false;
+		}catch(SQLException SQLex)
+		{
+			System.err.println(SQLex);
+			return false;
+		}finally
+		{
+			try 
+			{
+				con.close();				
+			}catch(SQLException SQLex2)
+			{
+				System.err.println(SQLex2);
+			}
+		}
 	}
 }

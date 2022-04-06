@@ -21,9 +21,17 @@ public abstract class Person {
 	protected boolean validPassword;
 	
 	public Person() {		
-		this.RegisterDate = today.toString();
+		
 	}
 	
+	public Date getToday() {
+		return today;
+	}
+
+	public void setToday(Date today) {
+		this.today = today;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -65,7 +73,7 @@ public abstract class Person {
 		return RegisterDate;
 	}
 
-	protected void setRegisterDate(String registerDate) {
+	public void setRegisterDate(String registerDate) {
 		RegisterDate = registerDate;
 	}
 

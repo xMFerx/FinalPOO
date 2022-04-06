@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
 
 public class UserWin extends JFrame {
 
@@ -21,11 +22,12 @@ public class UserWin extends JFrame {
 	private JTextField txtUserName;
 	private JTextField txtName;
 	private JTextField txtEmail;
-	private JTextField textNum;
-	private JTextField txtAddress;
+	private JTextField txtTel;
 	private JTextField textId;
-	private JTextField textDate;
+	private JTextField txtBirthday;
 	private JTextField txtCity;
+	private JTextField txtRegisterDate;
+	private JTextField txtPassword;
 
 	/**
 	 * Launch the application.
@@ -57,14 +59,15 @@ public class UserWin extends JFrame {
 		getContentPane().setLayout(null);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = 
+		JLabel lblID = 
 				new JLabel("Id #");
-				lblNewLabel.setFont(new Font("morgenlicht", Font.PLAIN, 25));
-				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-				lblNewLabel.setBounds(373, 36, 95, 45);
-				getContentPane().add(lblNewLabel, BorderLayout.NORTH);
+				lblID.setFont(new Font("morgenlicht", Font.PLAIN, 25));
+				lblID.setHorizontalAlignment(SwingConstants.CENTER);
+				lblID.setBounds(373, 36, 95, 45);
+				getContentPane().add(lblID, BorderLayout.NORTH);
 				
 				txtUserName = new JTextField();
+				txtUserName.setOpaque(false);
 				txtUserName.setBorder(null);
 				txtUserName.setHorizontalAlignment(SwingConstants.CENTER);
 				txtUserName.setText("ChanguaLover user");
@@ -74,19 +77,20 @@ public class UserWin extends JFrame {
 				getContentPane().add(txtUserName);
 				txtUserName.setColumns(10);
 				
-				JLabel lblNewLabel_1 = new JLabel("");
-				lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-				lblNewLabel_1.setIcon(new ImageIcon(UserPanel.class.getResource("/view/icons/SmallLogo.png")));
-				lblNewLabel_1.setBounds(144, 37, 119, 102);
-				getContentPane().add(lblNewLabel_1, BorderLayout.NORTH);
+				JLabel lblLogo = new JLabel("");
+				lblLogo.setHorizontalAlignment(SwingConstants.CENTER);
+				lblLogo.setIcon(new ImageIcon(UserPanel.class.getResource("/view/icons/SmallLogo.png")));
+				lblLogo.setBounds(144, 37, 119, 102);
+				getContentPane().add(lblLogo, BorderLayout.NORTH);
 				
-				JLabel lblId = new JLabel("Name.");
-				lblId.setHorizontalAlignment(SwingConstants.CENTER);
-				lblId.setFont(new Font("morgenlicht", Font.PLAIN, 20));
-				lblId.setBounds(70, 180, 119, 45);
-				getContentPane().add(lblId);
+				JLabel lblName = new JLabel("Nombre");
+				lblName.setHorizontalAlignment(SwingConstants.CENTER);
+				lblName.setFont(new Font("morgenlicht", Font.PLAIN, 20));
+				lblName.setBounds(70, 180, 119, 45);
+				getContentPane().add(lblName);
 				
 				txtName = new JTextField();
+				txtName.setOpaque(false);
 				txtName.setText("Heladero");
 				txtName.setHorizontalAlignment(SwingConstants.LEFT);
 				txtName.setFont(new Font("Saudagar", Font.PLAIN, 20));
@@ -108,13 +112,8 @@ public class UserWin extends JFrame {
 				lblTel.setBounds(70, 291, 119, 45);
 				getContentPane().add(lblTel);
 				
-				JLabel lblAddress = new JLabel("Address.");
-				lblAddress.setHorizontalAlignment(SwingConstants.CENTER);
-				lblAddress.setFont(new Font("morgenlicht", Font.PLAIN, 20));
-				lblAddress.setBounds(70, 347, 119, 45);
-				getContentPane().add(lblAddress);
-				
 				txtEmail = new JTextField();
+				txtEmail.setOpaque(false);
 				txtEmail.setText("Changua@Lover.com");
 				txtEmail.setHorizontalAlignment(SwingConstants.LEFT);
 				txtEmail.setFont(new Font("Saudagar", Font.PLAIN, 20));
@@ -124,27 +123,19 @@ public class UserWin extends JFrame {
 				txtEmail.setBounds(219, 237, 481, 45);
 				getContentPane().add(txtEmail);
 				
-				textNum = new JTextField();
-				textNum.setText("654211");
-				textNum.setHorizontalAlignment(SwingConstants.LEFT);
-				textNum.setFont(new Font("Saudagar", Font.PLAIN, 20));
-				textNum.setEditable(false);
-				textNum.setColumns(10);
-				textNum.setBorder(null);
-				textNum.setBounds(219, 292, 278, 45);
-				getContentPane().add(textNum);
-				
-				txtAddress = new JTextField();
-				txtAddress.setText("Av siempre viva #123");
-				txtAddress.setHorizontalAlignment(SwingConstants.LEFT);
-				txtAddress.setFont(new Font("Saudagar", Font.PLAIN, 20));
-				txtAddress.setEditable(false);
-				txtAddress.setColumns(10);
-				txtAddress.setBorder(null);
-				txtAddress.setBounds(219, 348, 442, 45);
-				getContentPane().add(txtAddress);
+				txtTel = new JTextField();
+				txtTel.setOpaque(false);
+				txtTel.setText("654211");
+				txtTel.setHorizontalAlignment(SwingConstants.LEFT);
+				txtTel.setFont(new Font("Saudagar", Font.PLAIN, 20));
+				txtTel.setEditable(false);
+				txtTel.setColumns(10);
+				txtTel.setBorder(null);
+				txtTel.setBounds(219, 292, 278, 45);
+				getContentPane().add(txtTel);
 				
 				textId = new JTextField();
+				textId.setOpaque(false);
 				textId.setText("221555");
 				textId.setHorizontalAlignment(SwingConstants.LEFT);
 				textId.setFont(new Font("Saudagar", Font.PLAIN, 27));
@@ -154,34 +145,35 @@ public class UserWin extends JFrame {
 				textId.setBounds(466, 36, 252, 45);
 				getContentPane().add(textId);
 				
-				JLabel lblBirthday = new JLabel("Birthday.");
+				JLabel lblBirthday = new JLabel("Nacimiento");
 				lblBirthday.setHorizontalAlignment(SwingConstants.CENTER);
 				lblBirthday.setFont(new Font("morgenlicht", Font.PLAIN, 20));
 				lblBirthday.setBounds(507, 290, 119, 45);
 				getContentPane().add(lblBirthday, BorderLayout.CENTER);
 				
-				textDate = new JTextField();
-				textDate.setText("6-5-2011");
-				textDate.setHorizontalAlignment(SwingConstants.LEFT);
-				textDate.setFont(new Font("Saudagar", Font.PLAIN, 20));
-				textDate.setEditable(false);
-				textDate.setColumns(10);
-				textDate.setBorder(null);
-				textDate.setBounds(648, 292, 173, 45);
-				getContentPane().add(textDate);
+				txtBirthday = new JTextField();
+				txtBirthday.setOpaque(false);
+				txtBirthday.setText("6-5-2011");
+				txtBirthday.setHorizontalAlignment(SwingConstants.LEFT);
+				txtBirthday.setFont(new Font("Saudagar", Font.PLAIN, 20));
+				txtBirthday.setEditable(false);
+				txtBirthday.setColumns(10);
+				txtBirthday.setBorder(null);
+				txtBirthday.setBounds(648, 292, 173, 45);
+				getContentPane().add(txtBirthday);
 				
-				JButton btnPurHistory = new JButton("Purchase history");
+				JButton btnPurHistory = new JButton("Historial de Compras");
 				btnPurHistory.setFont(new Font("Saudagar", Font.PLAIN, 20));
 				btnPurHistory.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 					}
 				});
-				btnPurHistory.setBounds(89, 478, 201, 37);
+				btnPurHistory.setBounds(89, 478, 216, 37);
 				getContentPane().add(btnPurHistory, BorderLayout.SOUTH);
 				
-				JButton btnWishlist = new JButton("Wishlist");
+				JButton btnWishlist = new JButton("Lista de Deseos");
 				btnWishlist.setFont(new Font("Saudagar", Font.PLAIN, 20));
-				btnWishlist.setBounds(89, 541, 201, 37);
+				btnWishlist.setBounds(89, 541, 216, 37);
 				getContentPane().add(btnWishlist);
 				
 				JButton btnEdit = new JButton(" Edit");
@@ -208,22 +200,61 @@ public class UserWin extends JFrame {
 				btnDelate.setBounds(718, 493, 119, 60);
 				getContentPane().add(btnDelate);
 				
-				JLabel lblCity = new JLabel("City.");
+				JLabel lblCity = new JLabel("Ciudad");
 				lblCity.setHorizontalAlignment(SwingConstants.CENTER);
 				lblCity.setFont(new Font("morgenlicht", Font.PLAIN, 20));
-				lblCity.setBounds(70, 403, 119, 45);
+				lblCity.setBounds(70, 347, 119, 45);
 				getContentPane().add(lblCity);
 				
 				txtCity = new JTextField();
+				txtCity.setOpaque(false);
 				txtCity.setText("Springfield");
 				txtCity.setHorizontalAlignment(SwingConstants.LEFT);
 				txtCity.setFont(new Font("Saudagar", Font.PLAIN, 20));
 				txtCity.setEditable(false);
 				txtCity.setColumns(10);
 				txtCity.setBorder(null);
-				txtCity.setBounds(219, 404, 278, 45);
+				txtCity.setBounds(219, 347, 278, 45);
 				getContentPane().add(txtCity);
+				
+				JLabel lblRegistro = new JLabel("Registro");
+				lblRegistro.setHorizontalAlignment(SwingConstants.CENTER);
+				lblRegistro.setFont(new Font("morgenlicht", Font.PLAIN, 20));
+				lblRegistro.setBounds(507, 347, 119, 45);
+				contentPane.add(lblRegistro);
+				
+				txtRegisterDate = new JTextField();
+				txtRegisterDate.setText("6-5-2011");
+				txtRegisterDate.setOpaque(false);
+				txtRegisterDate.setHorizontalAlignment(SwingConstants.LEFT);
+				txtRegisterDate.setFont(new Font("Saudagar", Font.PLAIN, 20));
+				txtRegisterDate.setEditable(false);
+				txtRegisterDate.setColumns(10);
+				txtRegisterDate.setBorder(null);
+				txtRegisterDate.setBounds(648, 347, 173, 45);
+				contentPane.add(txtRegisterDate);
+				
+				JLabel lblPass = new JLabel("Contrase\u00F1a");
+				lblPass.setHorizontalAlignment(SwingConstants.CENTER);
+				lblPass.setFont(new Font("morgenlicht", Font.PLAIN, 20));
+				lblPass.setBounds(496, 234, 130, 45);
+				contentPane.add(lblPass);
+				
+				JScrollPane scrollPane = new JScrollPane();
+				scrollPane.setBorder(null);
+				scrollPane.setOpaque(false);
+				scrollPane.setEnabled(false);
+				scrollPane.setBounds(645, 235, 229, 45);
+				contentPane.add(scrollPane);
+				
+				txtPassword = new JTextField();
+				scrollPane.setViewportView(txtPassword);
+				txtPassword.setOpaque(false);
+				txtPassword.setHorizontalAlignment(SwingConstants.LEFT);
+				txtPassword.setFont(new Font("Saudagar", Font.PLAIN, 20));
+				txtPassword.setEditable(false);
+				txtPassword.setColumns(10);
+				txtPassword.setBorder(null);
 		
 	}
-
 }

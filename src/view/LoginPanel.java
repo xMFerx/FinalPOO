@@ -6,11 +6,10 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 import javax.swing.JPasswordField;
 import java.awt.Font;
 import javax.swing.ImageIcon;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
 
 public class LoginPanel extends JPanel {
 	private JTextField txtUser;
@@ -51,7 +50,7 @@ public class LoginPanel extends JPanel {
 		add(TitleLabel);
 		
 		btnLogIn = new JButton("Acceder");
-		btnLogIn.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, new Color(0, 0, 0)));
+		btnLogIn.setBorder(null);
 		btnLogIn.setForeground(Color.LIGHT_GRAY);
 		btnLogIn.setBackground(new Color(81, 52, 77));
 		btnLogIn.setFont(new Font("Malgun Gothic", Font.BOLD, 16));

@@ -24,6 +24,7 @@ public class SignUpPanelUsers extends JPanel {
 	private JLabel lblLogo;
 	private JButton btnFinish;
 	private JTextField txtMessage;
+	private JButton btnBack;
 
 	/**
 	 * Create the panel.
@@ -171,6 +172,12 @@ public class SignUpPanelUsers extends JPanel {
 		txtMessage.setBounds(372, 581, 300, 14);
 		add(txtMessage);
 		
+		btnBack = new JButton("");
+		btnBack.setContentAreaFilled(false);
+		btnBack.setIcon(new ImageIcon(SignUpPanelUsers.class.getResource("/view/icons/GoBackIcon.png")));
+		btnBack.setBounds(326, 35, 42, 42);
+		add(btnBack);
+		
 		JLabel lblBG = new JLabel("");
 		lblBG.setIcon(new ImageIcon(SignUpPanelUsers.class.getResource("/view/icons/SignUpBG.png")));
 		lblBG.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -181,6 +188,18 @@ public class SignUpPanelUsers extends JPanel {
 	}
 	
 	
+
+	public JButton getBtnBack() {
+		return btnBack;
+	}
+
+
+
+	public void setBtnBack(JButton btnBack) {
+		this.btnBack = btnBack;
+	}
+
+
 
 	public void setTxtUserName(JTextField txtUserName) {
 		this.txtUserName = txtUserName;

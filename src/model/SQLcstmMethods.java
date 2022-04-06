@@ -164,7 +164,7 @@ public class SQLcstmMethods extends SQLconnection{
 		ResultSet rs = null;
 		Connection con = getConnection();
 		
-		String sql = "SELECT idcstm, cstmUserName, cstmPass, cstmEmail FROM customers WHERE cstmUserName=?";
+		String sql = "SELECT idcstm, cstmUserName, cstmPass, cstmEmail, cstmName, cstmCity, cstmRegisterDate, cstmBirthday, cstmTel FROM customers WHERE cstmUserName=?";
 		
 		try 
 		{
@@ -178,6 +178,11 @@ public class SQLcstmMethods extends SQLconnection{
 				{
 					us.setId(rs.getInt(1));	
 					us.setEmail(rs.getString(4));
+					us.setName(rs.getString(5));
+					us.setCity(rs.getString(6));
+					us.setRegisterDate(rs.getString(7));
+					us.setbirthday(rs.getDate(8));
+					us.setTelephone(rs.getInt(9));					
 					return true;
 				}
 				else
