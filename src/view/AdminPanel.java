@@ -113,10 +113,6 @@ public class AdminPanel extends JPanel {
 		
 		btnUsersList = new JButton("Usuarios");
 		btnUsersList.setFont(new Font("Saudagar", Font.PLAIN, 22));
-		btnUsersList.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnUsersList.setBounds(33, 433, 201, 37);
 		add(btnUsersList);
 		
@@ -145,10 +141,6 @@ public class AdminPanel extends JPanel {
 		btnDelete = new JButton("Eliminar");
 		btnDelete.setHorizontalAlignment(SwingConstants.LEFT);
 		btnDelete.setIcon(new ImageIcon(UserPanel.class.getResource("/view/icons/Bin.png")));
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnDelete.setFont(new Font("Saudagar", Font.PLAIN, 16));
 		btnDelete.setContentAreaFilled(false);
 		btnDelete.setBounds(852, 305, 133, 60);

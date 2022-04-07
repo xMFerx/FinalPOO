@@ -257,4 +257,94 @@ public class SQLadmMethods extends SQLconnection{
     	}
 		return model;
 	}
+	
+	public DefaultTableModel getProducts()
+	{
+		DefaultTableModel model = null;
+		try {
+    		model = new DefaultTableModel()
+    		{
+    			public boolean isCellEditable(int row, int column)
+    			{				
+    				return false;
+    			}
+			};
+    		    		
+    		PreparedStatement ps = null;
+    		ResultSet rs = null;
+    		Connection con = getConnection();
+    		
+    		String sql = "SELECT idProd, proName, proCost, proDiscount, proQuantity, proQSold, proProfit FROM products";
+    		ps = con.prepareStatement(sql);
+    		rs = ps.executeQuery();
+    		
+    		ResultSetMetaData rsMd = (ResultSetMetaData) rs.getMetaData();
+    		int cantidadColumnas = rsMd.getColumnCount();
+    		
+    		model.addColumn("id");
+    		model.addColumn("Name");
+    		model.addColumn("Cost");
+    		model.addColumn("Discount");
+    		model.addColumn("Quantity");
+    		model.addColumn("QuantitySold");
+    		model.addColumn("Profit");
+    		
+    		while(rs.next())
+    		{
+    			Object[] filas = new Object[cantidadColumnas];
+    			for (int i = 0; i < cantidadColumnas; i++)
+    			{
+    				filas[i] = rs.getObject(i+1);
+    			}    			
+    			model.addRow(filas);    			
+    		}
+    		
+    	}catch(SQLException exSQL) {
+    		System.err.println(exSQL);
+    	}
+		return model;
+	}
+	public DefaultTableModel getSales()
+	{
+		DefaultTableModel model = null;
+		try {
+    		model = new DefaultTableModel()
+    		{
+    			public boolean isCellEditable(int row, int column)
+    			{				
+    				return false;
+    			}
+			};
+    		    		
+    		PreparedStatement ps = null;
+    		ResultSet rs = null;
+    		Connection con = getConnection();
+    		
+    		String sql = "SELECT idOrder, Date, ordTotal, fkidCstm FROM orders";
+    		ps = con.prepareStatement(sql);
+    		rs = ps.executeQuery();
+    		
+    		ResultSetMetaData rsMd = (ResultSetMetaData) rs.getMetaData();
+    		int cantidadColumnas = rsMd.getColumnCount();
+    		
+    		model.addColumn("id");
+    		model.addColumn("Fecha");
+    		model.addColumn("Total");
+    		model.addColumn("Id Cliente");
+    		
+    		while(rs.next())
+    		{
+    			Object[] filas = new Object[cantidadColumnas];
+    			for (int i = 0; i < cantidadColumnas; i++)
+    			{
+    				filas[i] = rs.getObject(i+1);
+    			}    			
+    			model.addRow(filas);    			
+    		}
+    		
+    	}catch(SQLException exSQL) {
+    		System.err.println(exSQL);
+    	}
+		return model;
+	}
 }

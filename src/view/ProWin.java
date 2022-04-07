@@ -22,7 +22,6 @@ public class ProWin extends JFrame {
 	private JTextField txtID;
 	private JTextField txtdiscount;
 	private JTextField txtProfits;
-	private JTextField txtPassword;
 	private JButton btnEdit;
 	private JButton btnSaveEdit;
 	private JButton btnDelete;
@@ -97,7 +96,6 @@ public class ProWin extends JFrame {
 				
 				txtQuantity = new JTextField();
 				txtQuantity.setOpaque(false);
-				txtQuantity.setText("Changua@Lover.com");
 				txtQuantity.setHorizontalAlignment(SwingConstants.LEFT);
 				txtQuantity.setFont(new Font("Saudagar", Font.PLAIN, 20));
 				txtQuantity.setEditable(false);
@@ -187,22 +185,6 @@ public class ProWin extends JFrame {
 				txtProfits.setBounds(373, 348, 278, 45);
 				getContentPane().add(txtProfits);
 				
-				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBorder(null);
-				scrollPane.setOpaque(false);
-				scrollPane.setEnabled(false);
-				scrollPane.setBounds(645, 235, 229, 45);
-				contentPane.add(scrollPane);
-				
-				txtPassword = new JTextField();
-				scrollPane.setViewportView(txtPassword);
-				txtPassword.setOpaque(false);
-				txtPassword.setHorizontalAlignment(SwingConstants.LEFT);
-				txtPassword.setFont(new Font("Saudagar", Font.PLAIN, 20));
-				txtPassword.setEditable(false);
-				txtPassword.setColumns(10);
-				txtPassword.setBorder(null);		
-				
 				txtMessage = new JTextField();
 				txtMessage.setOpaque(false);
 				txtMessage.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -213,29 +195,24 @@ public class ProWin extends JFrame {
 				txtMessage.setBounds(393, 384, 481, 30);
 				contentPane.add(txtMessage);
 	}
-	
 
-	public JButton getBtnSaveEdit() {
-		return btnSaveEdit;
+	public JPanel getContentPane() {
+		return contentPane;
 	}
 
-	public JTextField getTxtMessage() {
-		return txtMessage;
-	}
-
-	public JTextField getTxtUserName() {
+	public JTextField getTxtNamePro() {
 		return txtNamePro;
 	}
 
-	public JTextField getTxtName() {
+	public JTextField getTxtCost() {
 		return txtCost;
 	}
 
-	public JTextField getTxtEmail() {
+	public JTextField getTxtQuantity() {
 		return txtQuantity;
 	}
 
-	public JTextField getTxtTel() {
+	public JTextField getTxtSold() {
 		return txtSold;
 	}
 
@@ -243,22 +220,31 @@ public class ProWin extends JFrame {
 		return txtID;
 	}
 
-	public JTextField getTxtBirthday() {
+	public JTextField getTxtdiscount() {
 		return txtdiscount;
 	}
 
-	public JTextField getTxtCity() {
+	public JTextField getTxtProfits() {
 		return txtProfits;
 	}
-
-
 
 	public JButton getBtnEdit() {
 		return btnEdit;
 	}
 
+	public JButton getBtnSaveEdit() {
+		return btnSaveEdit;
+	}
+
 	public JButton getBtnDelete() {
 		return btnDelete;
 	}
+
+	public JTextField getTxtMessage() {
+		return txtMessage;
+	}
+	
+
+	
 	
 }

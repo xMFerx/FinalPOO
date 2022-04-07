@@ -6,6 +6,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -14,6 +15,7 @@ import javax.swing.JTextArea;
 public class PassRecoveryPanel extends JPanel {
 	private JTextField textField;
 	private JTextField textField2;
+	private JButton btnGoBack;
 
 	/**
 	 * Create the panel.
@@ -50,6 +52,15 @@ public class PassRecoveryPanel extends JPanel {
 		btnSearch.setBounds(661, 224, 111, 39);
 		add(btnSearch);
 		
+		btnGoBack = new JButton();
+		btnGoBack.setIcon(new ImageIcon(UserPanel.class.getResource("/view/icons/GoBackIcon.png")));
+		btnGoBack.setHorizontalAlignment(SwingConstants.LEFT);
+		btnGoBack.setFont(new Font("Saudagar", Font.PLAIN, 15));
+		btnGoBack.setBorder(null);
+		btnGoBack.setContentAreaFilled(false);
+		btnGoBack.setBounds(46, 30, 187, 52);
+		add(btnGoBack);
+		
 		JTextArea txtrSiHaOlvidado = new JTextArea();
 		txtrSiHaOlvidado.setOpaque(false);
 		txtrSiHaOlvidado.setFont(new Font("Saudagar", Font.PLAIN, 18));
@@ -71,4 +82,10 @@ public class PassRecoveryPanel extends JPanel {
 		add(btnRecuperar);
 
 	}
+
+	public JButton getBtnGoBack() {
+		return btnGoBack;
+	}
+	
+	
 }

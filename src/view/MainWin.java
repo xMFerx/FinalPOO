@@ -19,7 +19,13 @@ public class MainWin extends JFrame {
 	private MainCartPanel cart;
 	private AdminPanel PanelAdmin;
 	private UserPanel PanelUsuario; 
+	private PassRecoveryPanel PanelRecPass;
 	
+	
+	public PassRecoveryPanel getPanelRecPass() {
+		return PanelRecPass;
+	}
+
 	public MainCartPanel getCart() {
 		return cart;
 	}
@@ -75,6 +81,8 @@ public class MainWin extends JFrame {
 		
 		PanelUsuario = new UserPanel(); 
 		
+		PanelRecPass = new PassRecoveryPanel();
+		
 		PanelCatalogo = new CataloguePanel();
 		ScrollablePanel = new JScrollPane();
 		ScrollablePanel.setBounds(5,5,1020,720);
@@ -83,7 +91,16 @@ public class MainWin extends JFrame {
 		ScrollablePanel.getVerticalScrollBar().setUnitIncrement(16);
 		
 		cart = new MainCartPanel();		
-	}		
+	}	
+	
+	public void IniPanelRecPass()
+	{
+		setContentPane(PanelRecPass);
+		PanelRecPass.setLayout(null);
+		this.invalidate();
+		this.validate();
+		this.repaint();
+	}
 
 	public void IniPanelSignUpUser()
 	{

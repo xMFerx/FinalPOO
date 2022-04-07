@@ -24,6 +24,7 @@ import model.SQLprodMethods;
 import model.User;
 import view.CataloguePanel;
 import view.MainWin;
+import view.ProWin;
 import view.UserWin;
 
 public class Controller implements ActionListener{
@@ -34,12 +35,14 @@ public class Controller implements ActionListener{
 	private Orders ord = new Orders();
 	private MainWin VenPrincipal;
 	private UserWin VenUsuario;
+	private ProWin VenProducto;
 	private SQLcstmMethods SQLCustomers = new SQLcstmMethods();
 	private SQLadmMethods SQLAdmins = new SQLadmMethods();
 	private SQLprodMethods SQLProducts = new SQLprodMethods();
 	private SQLordersMethods SQLorder = new SQLordersMethods();
 	private JButton doubleClick;
 	private boolean isAdmin = false;
+	private int AdmTables = 0;
 	private int BannerStatus = 1;
 	private int LoginID = 0;
 	
@@ -48,6 +51,7 @@ public class Controller implements ActionListener{
 		VenPrincipal = new MainWin();
 		VenPrincipal.setVisible(true);
 		VenUsuario = new UserWin();
+		VenProducto = new ProWin();
 		goToCatalogue();
 				
 		System.out.println("Cargando...");		
@@ -102,12 +106,12 @@ public class Controller implements ActionListener{
 		}
 		if(e.getSource() == VenPrincipal.getPanelAcceso().getBtnPassRecover())//Password Recover 
 		{
-			goToPassRecover();			
+			goToPanelRecPass();			
 		}
 		if(e.getSource() == VenPrincipal.getPanelAcceso().getBtnLogInAdmins())//Admin Log In
 		{			
 			VenPrincipal.getPanelAcceso().getTxtMessage().setText("Modo ADMIN");
-			VenPrincipal.getPanelAcceso().getBtnLogInAdmins().setText("Iniciar como usuario ");
+			VenPrincipal.getPanelAcceso().getBtnLogInAdmins().setVisible(false);
 			isAdmin = true;
 		}
 		
@@ -160,6 +164,12 @@ public class Controller implements ActionListener{
 			}
 		}
 		
+		/*
+		 * Password Recovery Panel
+		 */
+		if(e.getSource() == VenPrincipal.getPanelRecPass().getBtnGoBack()) {
+			goToLogIn();
+		}
 		/*
 		 * Catalog Panel
 		 */	
@@ -382,12 +392,13 @@ public class Controller implements ActionListener{
 		
 		if(e.getSource() == VenPrincipal.getPanelAdmin().getBtnUsersList())
 		{
+			AdmTables =1;
 			DefaultTableModel model = SQLAdmins.getUsers();
 			TableUsers(model);
 			VenPrincipal.getPanelAdmin().getTables().setAutoCreateRowSorter(true);
 			VenPrincipal.getPanelAdmin().getTables().getSelectionModel().addListSelectionListener(new ListSelectionListener(){
 		        public void valueChanged(ListSelectionEvent event) {	            
-		        	if (!event.getValueIsAdjusting() && VenPrincipal.getPanelAdmin().getTables().getSelectedRow() != -1)
+		        	if (!event.getValueIsAdjusting() && VenPrincipal.getPanelAdmin().getTables().getSelectedRow() != -1 && AdmTables == 1)
 		        	{		        		
 		        		usr.setId(Integer.parseInt(VenPrincipal.getPanelAdmin().getTables().getValueAt(VenPrincipal.getPanelAdmin().getTables().getSelectedRow(), 0).toString()));
 		        		usr = SQLCustomers.FindUser(usr);		        		
@@ -406,6 +417,99 @@ public class Controller implements ActionListener{
 		        	}
 		        }
 		    });
+		}
+		
+		if(e.getSource() == VenPrincipal.getPanelAdmin().getBtnProducts())
+		{
+			AdmTables =2;
+			DefaultTableModel model = SQLAdmins.getProducts();
+			TableUsers(model);
+			VenPrincipal.getPanelAdmin().getTables().setAutoCreateRowSorter(true);
+			VenPrincipal.getPanelAdmin().getTables().getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+		        public void valueChanged(ListSelectionEvent event) {	            
+		        	if (!event.getValueIsAdjusting() && VenPrincipal.getPanelAdmin().getTables().getSelectedRow() != -1 && AdmTables == 2)
+		        	{		        		
+		        		prod.setId(Integer.parseInt(VenPrincipal.getPanelAdmin().getTables().getValueAt(VenPrincipal.getPanelAdmin().getTables().getSelectedRow(), 0).toString()));
+		        		SQLProducts.FindProduct(prod);   		
+		        		VenProducto = new ProWin();
+		        		VenProducto.getTxtCost().setText(String.valueOf(prod.getPrice()));
+		        		VenProducto.getTxtdiscount().setText(String.valueOf(prod.getDiscount()));
+		    			VenProducto.getTxtID().setText(String.valueOf(prod.getId()));
+		    			VenProducto.getTxtNamePro().setText(prod.getName());
+		    			VenProducto.getTxtProfits().setText(String.valueOf(prod.getProfit()));
+		    			VenProducto.getTxtQuantity().setText(String.valueOf(prod.getQtStored()));
+		    			VenProducto.getTxtSold().setText(String.valueOf(prod.getQtSold()));
+		        		VenProducto.setVisible(true);
+		        		OpenProductWin();
+		        	}
+		        }
+		    });
+		}		
+		if(e.getSource() == VenPrincipal.getPanelAdmin().getBtnSales())
+		{
+			AdmTables=3;
+			DefaultTableModel model = SQLAdmins.getSales();
+			TableUsers(model);
+			VenPrincipal.getPanelAdmin().getTables().setAutoCreateRowSorter(true);			
+		}
+		
+		/*
+		 * Product Details Window
+		 */
+		if(e.getSource() == VenProducto.getBtnEdit())
+		{
+			VenProducto.getTxtCost().setEditable(true);
+			VenProducto.getTxtdiscount().setEditable(true);
+			VenProducto.getTxtID().setEditable(true);
+			VenProducto.getTxtNamePro().setEditable(true);
+			VenProducto.getTxtProfits().setEditable(true);
+			VenProducto.getTxtQuantity().setEditable(true);
+			VenProducto.getTxtSold().setEditable(true);
+			VenProducto.getBtnEdit().setVisible(false);
+			VenProducto.getBtnSaveEdit().setVisible(true);
+		}
+		if(e.getSource() == VenProducto.getBtnSaveEdit())
+		{
+			try
+			{
+				VenProducto.getTxtCost().setEditable(false);
+				VenProducto.getTxtdiscount().setEditable(false);
+				VenProducto.getTxtID().setEditable(false);
+				VenProducto.getTxtNamePro().setEditable(false);
+				VenProducto.getTxtProfits().setEditable(false);
+				VenProducto.getTxtQuantity().setEditable(false);
+				VenProducto.getTxtSold().setEditable(false);
+				
+				prod.setPrice(Float.parseFloat(VenProducto.getTxtCost().getText()));
+				prod.setDiscount(Integer.parseInt(VenProducto.getTxtdiscount().getText()));
+				prod.setName(VenProducto.getTxtNamePro().getText());
+				prod.setProfit(Float.parseFloat(VenProducto.getTxtProfits().getText()));
+				prod.setQtStored(Integer.parseInt(VenProducto.getTxtQuantity().getText()));
+				prod.setQtSold(Integer.parseInt(VenProducto.getTxtSold().getText()));
+				
+				if(SQLProducts.UpdateProd(prod))
+				{
+					VenProducto.getTxtMessage().setText("Datos modificados!");
+					//Sleep(1);
+					VenProducto.getTxtMessage().setText("");
+					VenProducto.getBtnEdit().setVisible(true);
+					VenProducto.getBtnSaveEdit().setVisible(false);					
+				}
+				else
+				{
+					VenProducto.getTxtMessage().setText("Error en la base de datos");
+				}
+				
+			}catch(Exception ex)
+			{
+				VenProducto.getTxtMessage().setText("Verifica los datos");					
+				System.err.println(ex);					
+			}
+		}
+		if(e.getSource() == VenProducto.getBtnDelete())
+		{
+			SQLProducts.DeleteProduct(prod);
+			VenProducto.dispose();
 		}
 		
 		/*		 
@@ -472,7 +576,7 @@ public class Controller implements ActionListener{
 		if(e.getSource() == VenUsuario.getBtnDelete())
 		{
 			SQLCustomers.DeleteUser(usr);
-			goToCatalogue();
+			VenUsuario.dispose();
 		}
 		
 		
@@ -561,6 +665,12 @@ public class Controller implements ActionListener{
 	/*
 	 * Initialize components 
 	 */
+	public void goToPanelRecPass()
+	{
+		VenPrincipal.IniPanelRecPass();
+		VenPrincipal.getPanelRecPass().getBtnGoBack().addActionListener(this);		
+	}
+	
 	public void goToLogIn()
 	{
 		VenPrincipal.IniPanelLogIn();
@@ -681,19 +791,21 @@ public class Controller implements ActionListener{
 		VenUsuario.getBtnWishlist().addActionListener(this);		
 	}
 	
-	public void goToPassRecover()
+	public void OpenProductWin() 
 	{
-		
-	}	
+		VenProducto.getBtnDelete().addActionListener(this);
+		VenProducto.getBtnEdit().addActionListener(this);
+		VenProducto.getBtnSaveEdit().addActionListener(this);		
+	}
 	
 	public void goToAdmPanel()
 	{
 		VenPrincipal.IniAdmPanel();
 		VenPrincipal.getPanelAdmin().getBtnDelete().addActionListener(this);
 		VenPrincipal.getPanelAdmin().getBtnEdit().addActionListener(this);
-		VenPrincipal.getPanelAdmin().getBtnProducts().addActionListener(this);//not coded
-		VenPrincipal.getPanelAdmin().getBtnSales().addActionListener(this);//not coded
-		VenPrincipal.getPanelAdmin().getBtnUsersList().addActionListener(this);//not coded
+		VenPrincipal.getPanelAdmin().getBtnProducts().addActionListener(this);
+		VenPrincipal.getPanelAdmin().getBtnSales().addActionListener(this);
+		VenPrincipal.getPanelAdmin().getBtnUsersList().addActionListener(this);
 		VenPrincipal.getPanelAdmin().getBtnSaveEdit().addActionListener(this);
 		VenPrincipal.getPanelAdmin().getBtnGoBack().addActionListener(this);
 	}
@@ -703,7 +815,7 @@ public class Controller implements ActionListener{
 		VenPrincipal.IniUserPanel();
 		VenPrincipal.getPanelUsuario().getBtnDelete().addActionListener(this);
 		VenPrincipal.getPanelUsuario().getBtnEdit().addActionListener(this);
-		VenPrincipal.getPanelUsuario().getBtnPurHistory().addActionListener(this);//not coded
+		VenPrincipal.getPanelUsuario().getBtnPurHistory().addActionListener(this);
 		VenPrincipal.getPanelUsuario().getBtnWishlist().addActionListener(this);//not coded		
 		VenPrincipal.getPanelUsuario().getBtnSaveEdit().addActionListener(this);
 		VenPrincipal.getPanelUsuario().getBtnGoBack().addActionListener(this);
