@@ -2,10 +2,8 @@ package view;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.JSplitPane;
 import java.awt.Font;
 import javax.swing.SwingConstants;
-import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -53,6 +51,7 @@ public class PassRecoveryPanel extends JPanel {
 		add(btnSearch);
 		
 		JTextArea txtrSiHaOlvidado = new JTextArea();
+		txtrSiHaOlvidado.setOpaque(false);
 		txtrSiHaOlvidado.setFont(new Font("Saudagar", Font.PLAIN, 18));
 		txtrSiHaOlvidado.setText("Ingrese el Email con el que accede al \u00E5rea de clientes  y pulse el bot\u00F3n Recuperar.\r\r\r\n\rEn un momento le remitiremos su nueva contrase\u00F1a de acceso al Email\r.");
 		txtrSiHaOlvidado.setBounds(164, 361, 627, 72);

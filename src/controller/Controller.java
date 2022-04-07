@@ -10,12 +10,16 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import model.Admin;
+import model.Orders;
 import model.Products;
 import model.SQLadmMethods;
 import model.SQLcstmMethods;
+import model.SQLordersMethods;
 import model.SQLprodMethods;
 import model.User;
 import view.CataloguePanel;
@@ -27,21 +31,24 @@ public class Controller implements ActionListener{
 	private User usr = new User();
 	private Admin adm = new Admin();
 	private Products prod = new Products();
+	private Orders ord = new Orders();
 	private MainWin VenPrincipal;
 	private UserWin VenUsuario;
 	private SQLcstmMethods SQLCustomers = new SQLcstmMethods();
 	private SQLadmMethods SQLAdmins = new SQLadmMethods();
 	private SQLprodMethods SQLProducts = new SQLprodMethods();
+	private SQLordersMethods SQLorder = new SQLordersMethods();
 	private JButton doubleClick;
 	private boolean isAdmin = false;
 	private int BannerStatus = 1;
+	private int LoginID = 0;
 	
 	
 	public Controller () {
 		VenPrincipal = new MainWin();
 		VenPrincipal.setVisible(true);
 		VenUsuario = new UserWin();
-		goToUserPanel();
+		goToCatalogue();
 				
 		System.out.println("Cargando...");		
 	}
@@ -81,6 +88,7 @@ public class Controller implements ActionListener{
 					VenPrincipal.getPanelCatalogo().getBtnLogIn().setVisible(false);
 					VenPrincipal.getPanelCatalogo().getBtnMyProfile().setVisible(true);
 					isAdmin = false;
+					LoginID = usr.getId();					
 					goToCatalogue();
 				}
 				else
@@ -309,7 +317,14 @@ public class Controller implements ActionListener{
 		
 		if(e.getSource() == VenPrincipal.getPanelCatalogo().getBtnCart())
 		{
-			goToCartPanel();			
+			if (LoginID != 0)
+			{
+				goToCartPanel();
+			}
+			else
+			{
+				goToLogIn();
+			}		
 		}
 		
 		/*
@@ -365,11 +380,100 @@ public class Controller implements ActionListener{
 			}
 		}
 		
+		if(e.getSource() == VenPrincipal.getPanelAdmin().getBtnUsersList())
+		{
+			DefaultTableModel model = SQLAdmins.getUsers();
+			TableUsers(model);
+			VenPrincipal.getPanelAdmin().getTables().setAutoCreateRowSorter(true);
+			VenPrincipal.getPanelAdmin().getTables().getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+		        public void valueChanged(ListSelectionEvent event) {	            
+		        	if (!event.getValueIsAdjusting() && VenPrincipal.getPanelAdmin().getTables().getSelectedRow() != -1)
+		        	{		        		
+		        		usr.setId(Integer.parseInt(VenPrincipal.getPanelAdmin().getTables().getValueAt(VenPrincipal.getPanelAdmin().getTables().getSelectedRow(), 0).toString()));
+		        		usr = SQLCustomers.FindUser(usr);		        		
+		        		VenUsuario = new UserWin();
+		        		VenUsuario.getTxtID().setText(String.valueOf(usr.getId()));
+		        		VenUsuario.getTxtName().setText(usr.getName());
+		        		VenUsuario.getTxtUserName().setText(usr.getUserName());
+		        		VenUsuario.getTxtBirthday().setText(usr.getbirthday().toString());
+		        		VenUsuario.getTxtCity().setText(usr.getCity());
+		        		VenUsuario.getTxtEmail().setText(usr.getEmail());
+		        		VenUsuario.getTxtPassword().setText(usr.getPassword());
+		        		VenUsuario.getTxtRegisterDate().setText(usr.getRegisterDate());
+		        		VenUsuario.getTxtTel().setText(String.valueOf(usr.getTelephone()));		        		
+		        		VenUsuario.setVisible(true);
+		        		OpenUserProfileWin();
+		        	}
+		        }
+		    });
+		}
 		
 		/*		 
 		 * User Profile Window 
-		 */
+		 */		
 		
+		if(e.getSource() == VenUsuario.getBtnEdit())
+		{			
+			VenUsuario.getTxtEmail().setEditable(true);
+			VenUsuario.getTxtName().setEditable(true);
+			VenUsuario.getTxtTel().setEditable(true);
+			VenUsuario.getTxtUserName().setEditable(true);
+			VenUsuario.getTxtCity().setEditable(true);			
+			VenUsuario.getTxtBirthday().setEditable(true);
+			VenUsuario.getTxtPassword().setEditable(true);
+			VenUsuario.getTxtTel().setEditable(true);
+			VenUsuario.getBtnEdit().setVisible(false);
+			VenUsuario.getBtnSaveEdit().setVisible(true);
+		}			
+		
+		if(e.getSource() == VenUsuario.getBtnSaveEdit())
+		{
+			try
+			{
+				VenUsuario.getTxtEmail().setEditable(false);
+				VenUsuario.getTxtName().setEditable(false);
+				VenUsuario.getTxtTel().setEditable(false);
+				VenUsuario.getTxtUserName().setEditable(false);
+				VenUsuario.getTxtCity().setEditable(false);
+				VenUsuario.getTxtBirthday().setEditable(false);
+				VenUsuario.getTxtPassword().setEditable(false);
+				VenUsuario.getTxtTel().setEditable(false);
+				
+				usr.setUserName(VenUsuario.getTxtUserName().getText().toString());
+				usr.setEmail(VenUsuario.getTxtEmail().getText().toString());
+				usr.setName(VenUsuario.getTxtName().getText().toString());
+				usr.setTelephone(Long.parseLong(VenUsuario.getTxtTel().getText().toString()));	
+				usr.setCity(VenUsuario.getTxtCity().getText());
+				usr.setbirthday(Date.valueOf(VenUsuario.getTxtBirthday().getText()));
+				if(usr.setPassword(VenUsuario.getTxtPassword().getText()))
+				{
+					VenUsuario.getTxtMessage().setText("Contraseña Invalida");
+				}else {
+					if(SQLCustomers.ModifyUser(usr))
+					{
+						VenUsuario.getTxtMessage().setText("Datos modificados!");
+						//Sleep(1);
+						VenUsuario.getTxtMessage().setText("");
+						VenUsuario.getBtnEdit().setVisible(true);
+						VenUsuario.getBtnSaveEdit().setVisible(false);					
+					}
+					else
+					{
+						VenUsuario.getTxtMessage().setText("Error en la base de datos");
+					}
+				}
+			}catch(Exception ex)
+			{
+				VenUsuario.getTxtMessage().setText("Verifica los datos");					
+				System.err.println(ex);					
+			}
+		}
+		
+		if(e.getSource() == VenUsuario.getBtnDelete())
+		{
+			SQLCustomers.DeleteUser(usr);
+			goToCatalogue();
+		}
 		
 		
 		/*
@@ -445,6 +549,7 @@ public class Controller implements ActionListener{
 			VenPrincipal.getCart().getPanelFinalMessage().setVisible(true);
 			VenPrincipal.getCart().getBtnCheck().setVisible(false);
 			VenPrincipal.getCart().getBtnConShopping().setVisible(false);
+			addProfits();
 		}
 		if(e.getSource() == VenPrincipal.getCart().getBtnConShopping())
 		{
@@ -517,7 +622,6 @@ public class Controller implements ActionListener{
 	
 	public void goToCartPanel()
 	{
-		
 		VenPrincipal.IniPanelCart();
 		VenPrincipal.getCart().getBtnCheck().setVisible(true);
 		VenPrincipal.getCart().getBtnConShopping().setVisible(true);
@@ -527,13 +631,54 @@ public class Controller implements ActionListener{
 		VenPrincipal.getCart().getBtnConShopping().addActionListener(this);
 		VenPrincipal.getCart().getBtnGoBack().addActionListener(this);
 		calculateTotal();
-		
-		
+		VenPrincipal.getCart().getTable().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e)
+			{
+				String newQuantity = "";
+				if(VenPrincipal.getCart().getTable().getSelectedRow() != -1)
+				{
+					int row = VenPrincipal.getCart().getTable().getSelectedRow();
+					int column = VenPrincipal.getCart().getTable().getSelectedColumn();
+					newQuantity = VenPrincipal.getCart().getTable().getModel().getValueAt(row, 1).toString();
+					prod.setName(VenPrincipal.getCart().getTable().getModel().getValueAt(row, 0).toString());
+					SQLProducts.FindProductName(prod);					
+					float fPrice = prod.getPrice();
+					int Quantity = 0;
+					
+										
+					if(column == 3)
+					{
+						Quantity = Integer.parseInt(newQuantity)+1;				
+						VenPrincipal.getCart().getTable().getModel().setValueAt(Quantity,row,1);
+						fPrice*=Quantity;
+						VenPrincipal.getCart().getTable().getModel().setValueAt(fPrice,row,2);
+					}else if(column == 4)
+					{
+						Quantity = Integer.parseInt(newQuantity)-1;
+						VenPrincipal.getCart().getTable().getModel().setValueAt(Quantity,row, 1);
+						fPrice*=Quantity;
+						VenPrincipal.getCart().getTable().getModel().setValueAt(fPrice,row,2);
+						if(VenPrincipal.getCart().getTable().getModel().getValueAt(row, 1).equals(0)) {
+							((DefaultTableModel) VenPrincipal.getCart().getTable().getModel()).removeRow(row);
+						}
+					}else if(column == 5)
+					{					
+						((DefaultTableModel) VenPrincipal.getCart().getTable().getModel()).removeRow(row);					
+					}
+					calculateTotal();
+				}
+				
+			}
+		});		
 	}	
 	
 	public void OpenUserProfileWin() 
 	{
-		//
+		VenUsuario.getBtnDelete().addActionListener(this);
+		VenUsuario.getBtnEdit().addActionListener(this);
+		VenUsuario.getBtnPurHistory().addActionListener(this);
+		VenUsuario.getBtnSaveEdit().addActionListener(this);
+		VenUsuario.getBtnWishlist().addActionListener(this);		
 	}
 	
 	public void goToPassRecover()
@@ -568,6 +713,28 @@ public class Controller implements ActionListener{
 	 * Utilities
 	 */
 	
+	public void addProfits() {
+		for(int i=0; i < VenPrincipal.getCart().getTable().getRowCount(); i++)
+		{			
+			prod.setName(VenPrincipal.getCart().getTable().getValueAt(i, 0).toString());
+			SQLProducts.FindProductName(prod);
+			prod.setQtStored(prod.getQtStored()-Integer.parseInt(VenPrincipal.getCart().getTable().getValueAt(i,1).toString()));
+			prod.setQtSold(prod.getQtSold()+Integer.parseInt(VenPrincipal.getCart().getTable().getValueAt(i,1).toString()));
+			prod.setProfit(prod.getProfit()+Float.parseFloat(VenPrincipal.getCart().getTable().getValueAt(i,2).toString()));
+			SQLProducts.ModifyProduct(prod);
+			ord = new Orders();			
+			ord.setTotal(Float.parseFloat(VenPrincipal.getCart().getTxtTotal().getText()));
+			SQLorder.RegisterOrder(ord);
+		}		
+	}
+	
+	public void TableUsers(DefaultTableModel model) {
+		VenPrincipal.getPanelAdmin().getTables().setModel(model);
+	}
+	public void TableProducts(DefaultTableModel model) {
+		VenPrincipal.getPanelAdmin().getTables().setModel(model);
+	}
+	
 	public void addToCart(int id)
 	{		
 		boolean inCart = false;
@@ -598,36 +765,7 @@ public class Controller implements ActionListener{
 					prod.getPrice()-prod.getPrice()*prod.getDiscount()/100,
 					Add,Remove,Delete});
 		}
-		VenPrincipal.getCart().getTable().addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e)
-			{
-				
-				if(VenPrincipal.getCart().getTable().getSelectedRow() != -1)
-				{
-					int row = VenPrincipal.getCart().getTable().getSelectedRow();
-					int column = VenPrincipal.getCart().getTable().getSelectedColumn();
-					String newQuantity = (VenPrincipal.getCart().getTable().getModel().getValueAt(row, 1).toString());
-					int Quantity = Integer.parseInt(newQuantity);
-					System.out.println(Quantity+1);
-					
-					if(column == 3)
-					{
-						VenPrincipal.getCart().getTable().getModel().setValueAt(Quantity++,row,column);
-					}else if(column == 4)
-					{
-						VenPrincipal.getCart().getTable().getModel().setValueAt(Quantity--,row,column);
-						if(VenPrincipal.getCart().getTable().getModel().getValueAt(row, 1).equals(0)) {
-							((DefaultTableModel) VenPrincipal.getCart().getTable().getModel()).removeRow(row);
-						}
-					}else if(column == 5)
-					{					
-						((DefaultTableModel) VenPrincipal.getCart().getTable().getModel()).removeRow(row);					
-					}
-					calculateTotal();
-				}
-				
-			}
-		});
+		
 	}
 	public void calculateTotal() {
 		float total=0;
@@ -650,8 +788,7 @@ public class Controller implements ActionListener{
 		VenPrincipal.getPanelRegistro().getTxtTelephone().setEnabled(false);
 		VenPrincipal.getPanelRegistro().getTxtUserName().setEnabled(false);
 		VenPrincipal.getPanelRegistro().getPasswordField().setEnabled(false);	
-	}
-	
+	}	
 	
 	public void Sleep(int i)
 	{

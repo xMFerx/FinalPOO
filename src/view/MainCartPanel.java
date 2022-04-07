@@ -110,7 +110,7 @@ setLayout(null);
 			public boolean isCellEditable(int row, int column)
 			{				
 				return false;
-			}	
+			}
 		};
 		table.setModel(model);
 		table.setDefaultRenderer(JButton.class, new TableCellRenderer()
@@ -120,6 +120,7 @@ setLayout(null);
 				return (Component)value;
 			}
 		});
+		
 		table.getColumnModel().getColumn(0).setPreferredWidth(322);
 		table.getColumnModel().getColumn(3).setPreferredWidth(10);
 		table.getColumnModel().getColumn(4).setPreferredWidth(10);

@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.table.DefaultTableModel;
+
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
+
 public class SQLadmMethods extends SQLconnection{
 	public boolean SignUpAdmin(Admin adm)
 	{
@@ -207,5 +211,50 @@ public class SQLadmMethods extends SQLconnection{
 				System.err.println(SQLex2);
 			}
 		}
+	}
+	
+	public DefaultTableModel getUsers()
+	{
+		DefaultTableModel model = null;
+		try {
+    		model = new DefaultTableModel()
+    		{
+    			public boolean isCellEditable(int row, int column)
+    			{				
+    				return false;
+    			}
+			};
+    		    		
+    		PreparedStatement ps = null;
+    		ResultSet rs = null;
+    		Connection con = getConnection();
+    		
+    		String sql = "SELECT idcstm, cstmName, cstmUserName, cstmRegisterDate, cstmEmail FROM customers";
+    		ps = con.prepareStatement(sql);
+    		rs = ps.executeQuery();
+    		
+    		ResultSetMetaData rsMd = (ResultSetMetaData) rs.getMetaData();
+    		int cantidadColumnas = rsMd.getColumnCount();
+    		
+    		model.addColumn("id");
+    		model.addColumn("Name");
+    		model.addColumn("UserName");
+    		model.addColumn("Register Date");
+    		model.addColumn("Email");
+    		
+    		while(rs.next())
+    		{
+    			Object[] filas = new Object[cantidadColumnas];
+    			for (int i = 0; i < cantidadColumnas; i++)
+    			{
+    				filas[i] = rs.getObject(i+1);
+    			}    			
+    			model.addRow(filas);    			
+    		}
+    		
+    	}catch(SQLException exSQL) {
+    		System.err.println(exSQL);
+    	}
+		return model;
 	}
 }

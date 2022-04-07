@@ -164,12 +164,6 @@ public class AdminPanel extends JPanel {
 		add(scrollPane);
 		
 		DefaultTableModel model = new DefaultTableModel();
-		DefaultTableModel modelUser = new DefaultTableModel();
-		
-		
-		DefaultTableModel modelProduct = new DefaultTableModel();
-		DefaultTableModel modelSales = new DefaultTableModel();
-		
 		tables = new JTable(model);
 		scrollPane.setViewportView(tables);
 		

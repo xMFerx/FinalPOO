@@ -114,18 +114,18 @@ public class SQLcstmMethods extends SQLconnection{
 		}		
 	}
 
-	public boolean FindUser(User us)
+	public User FindUser(User us)
 	{
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Connection con = getConnection();
 		
-		String sql = "SELECT * FROM customers WHERE cstmUserName=?";
+		String sql = "SELECT * FROM customers WHERE idcstm=?";
 		
 		try 
 		{
-			ps = con.prepareStatement(sql);
-			ps.setString(1, us.getUserName());
+			ps = con.prepareStatement(sql);			
+			ps.setInt(1, us.getId());
 			rs = ps.executeQuery();
 			
 			if (rs.next())
@@ -133,19 +133,63 @@ public class SQLcstmMethods extends SQLconnection{
 				us.setId(rs.getInt("idcstm"));
 				us.setName(rs.getString("cstmName"));
 				us.setUserName(rs.getString("cstmUserName"));							
-				us.setPassword(rs.getString("cstmPassword"));
+				us.setPassword(rs.getString("cstmPass"));
 				us.setCity(rs.getString("cstmCity"));
 				us.setEmail(rs.getString("cstmEmail"));
 				us.setTelephone(rs.getInt("cstmTel"));
 				us.setbirthday(rs.getDate("cstmBirthday"));
 				us.setRegisterDate(rs.getString("cstmRegisterDate"));	
-				return true;			
+				return us;			
 			}
-			return false;
+			return null;
 		}catch(SQLException SQLex)
 		{
 			System.err.println(SQLex);
-			return false;
+			return null;
+		}finally
+		{
+			try 
+			{
+				con.close();				
+			}catch(SQLException SQLex2)
+			{
+				System.err.println(SQLex2);
+			}
+		}		
+	}
+	
+	public User FindUserWEmail(User us)
+	{
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConnection();
+		
+		String sql = "SELECT * FROM customers WHERE cstmEmail=?";
+		
+		try 
+		{
+			ps = con.prepareStatement(sql);			
+			ps.setString(1, us.getEmail());
+			rs = ps.executeQuery();
+			
+			if (rs.next())
+			{
+				us.setId(rs.getInt("idcstm"));
+				us.setName(rs.getString("cstmName"));
+				us.setUserName(rs.getString("cstmUserName"));							
+				us.setPassword(rs.getString("cstmPass"));
+				us.setCity(rs.getString("cstmCity"));
+				us.setEmail(rs.getString("cstmEmail"));
+				us.setTelephone(rs.getInt("cstmTel"));
+				us.setbirthday(rs.getDate("cstmBirthday"));
+				us.setRegisterDate(rs.getString("cstmRegisterDate"));	
+				return us;			
+			}
+			return null;
+		}catch(SQLException SQLex)
+		{
+			System.err.println(SQLex);
+			return null;
 		}finally
 		{
 			try 

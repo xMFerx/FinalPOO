@@ -1,10 +1,7 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 
 public class UserWin extends JFrame {
@@ -23,33 +19,23 @@ public class UserWin extends JFrame {
 	private JTextField txtName;
 	private JTextField txtEmail;
 	private JTextField txtTel;
-	private JTextField textId;
+	private JTextField txtID;
 	private JTextField txtBirthday;
 	private JTextField txtCity;
 	private JTextField txtRegisterDate;
 	private JTextField txtPassword;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UserWin frame = new UserWin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JButton btnPurHistory;
+	private JButton btnWishlist;
+	private JButton btnEdit;
+	private JButton btnSaveEdit;
+	private JButton btnDelete;
+	private JTextField txtMessage;
 
 	/**
 	 * Create the frame.
 	 */
 	public UserWin() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 900, 666);
 		contentPane = new JPanel();
 		contentPane.setBorder(null);
@@ -134,16 +120,16 @@ public class UserWin extends JFrame {
 				txtTel.setBounds(219, 292, 278, 45);
 				getContentPane().add(txtTel);
 				
-				textId = new JTextField();
-				textId.setOpaque(false);
-				textId.setText("221555");
-				textId.setHorizontalAlignment(SwingConstants.LEFT);
-				textId.setFont(new Font("Saudagar", Font.PLAIN, 27));
-				textId.setEditable(false);
-				textId.setColumns(10);
-				textId.setBorder(null);
-				textId.setBounds(466, 36, 252, 45);
-				getContentPane().add(textId);
+				txtID = new JTextField();
+				txtID.setOpaque(false);
+				txtID.setText("221555");
+				txtID.setHorizontalAlignment(SwingConstants.LEFT);
+				txtID.setFont(new Font("Saudagar", Font.PLAIN, 27));
+				txtID.setEditable(false);
+				txtID.setColumns(10);
+				txtID.setBorder(null);
+				txtID.setBounds(466, 36, 252, 45);
+				getContentPane().add(txtID);
 				
 				JLabel lblBirthday = new JLabel("Nacimiento");
 				lblBirthday.setHorizontalAlignment(SwingConstants.CENTER);
@@ -162,25 +148,17 @@ public class UserWin extends JFrame {
 				txtBirthday.setBounds(648, 292, 173, 45);
 				getContentPane().add(txtBirthday);
 				
-				JButton btnPurHistory = new JButton("Historial de Compras");
+				btnPurHistory = new JButton("Historial de Compras");
 				btnPurHistory.setFont(new Font("Saudagar", Font.PLAIN, 20));
-				btnPurHistory.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
 				btnPurHistory.setBounds(89, 478, 216, 37);
 				getContentPane().add(btnPurHistory, BorderLayout.SOUTH);
 				
-				JButton btnWishlist = new JButton("Lista de Deseos");
+				btnWishlist = new JButton("Lista de Deseos");
 				btnWishlist.setFont(new Font("Saudagar", Font.PLAIN, 20));
 				btnWishlist.setBounds(89, 541, 216, 37);
 				getContentPane().add(btnWishlist);
 				
-				JButton btnEdit = new JButton(" Edit");
-				btnEdit.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
+				btnEdit = new JButton(" Edit");
 				btnEdit.setHorizontalAlignment(SwingConstants.LEFT);
 				btnEdit.setContentAreaFilled(false);
 				btnEdit.setIcon(new ImageIcon(UserPanel.class.getResource("/view/icons/Edit.png")));
@@ -188,17 +166,22 @@ public class UserWin extends JFrame {
 				btnEdit.setBounds(718, 423, 116, 60);
 				getContentPane().add(btnEdit);
 				
-				JButton btnDelate = new JButton("Delate");
-				btnDelate.setHorizontalAlignment(SwingConstants.LEFT);
-				btnDelate.setIcon(new ImageIcon(UserPanel.class.getResource("/view/icons/Bin.png")));
-				btnDelate.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
-				btnDelate.setFont(new Font("Saudagar", Font.PLAIN, 16));
-				btnDelate.setContentAreaFilled(false);
-				btnDelate.setBounds(718, 493, 119, 60);
-				getContentPane().add(btnDelate);
+				btnSaveEdit = new JButton(" Save");
+				btnSaveEdit.setHorizontalAlignment(SwingConstants.LEFT);
+				btnSaveEdit.setContentAreaFilled(false);
+				btnSaveEdit.setIcon(new ImageIcon(UserPanel.class.getResource("/view/icons/Edit.png")));
+				btnSaveEdit.setFont(new Font("Saudagar", Font.PLAIN, 16));
+				btnSaveEdit.setBounds(718, 423, 116, 60);
+				btnSaveEdit.setVisible(false);
+				getContentPane().add(btnSaveEdit);
+				
+				btnDelete = new JButton("Delete");
+				btnDelete.setHorizontalAlignment(SwingConstants.LEFT);
+				btnDelete.setIcon(new ImageIcon(UserPanel.class.getResource("/view/icons/Bin.png")));
+				btnDelete.setFont(new Font("Saudagar", Font.PLAIN, 16));
+				btnDelete.setContentAreaFilled(false);
+				btnDelete.setBounds(718, 493, 119, 60);
+				getContentPane().add(btnDelete);
 				
 				JLabel lblCity = new JLabel("Ciudad");
 				lblCity.setHorizontalAlignment(SwingConstants.CENTER);
@@ -254,7 +237,78 @@ public class UserWin extends JFrame {
 				txtPassword.setFont(new Font("Saudagar", Font.PLAIN, 20));
 				txtPassword.setEditable(false);
 				txtPassword.setColumns(10);
-				txtPassword.setBorder(null);
-		
+				txtPassword.setBorder(null);		
+				
+				txtMessage = new JTextField();
+				txtMessage.setOpaque(false);
+				txtMessage.setHorizontalAlignment(SwingConstants.RIGHT);
+				txtMessage.setFont(new Font("Saudagar", Font.PLAIN, 15));
+				txtMessage.setEditable(false);
+				txtMessage.setColumns(10);
+				txtMessage.setBorder(null);
+				txtMessage.setBounds(393, 384, 481, 30);
+				contentPane.add(txtMessage);
 	}
+	
+
+	public JButton getBtnSaveEdit() {
+		return btnSaveEdit;
+	}
+
+	public JTextField getTxtMessage() {
+		return txtMessage;
+	}
+
+	public JTextField getTxtUserName() {
+		return txtUserName;
+	}
+
+	public JTextField getTxtName() {
+		return txtName;
+	}
+
+	public JTextField getTxtEmail() {
+		return txtEmail;
+	}
+
+	public JTextField getTxtTel() {
+		return txtTel;
+	}
+
+	public JTextField getTxtID() {
+		return txtID;
+	}
+
+	public JTextField getTxtBirthday() {
+		return txtBirthday;
+	}
+
+	public JTextField getTxtCity() {
+		return txtCity;
+	}
+
+	public JTextField getTxtRegisterDate() {
+		return txtRegisterDate;
+	}
+
+	public JTextField getTxtPassword() {
+		return txtPassword;
+	}
+
+	public JButton getBtnPurHistory() {
+		return btnPurHistory;
+	}
+
+	public JButton getBtnWishlist() {
+		return btnWishlist;
+	}
+
+	public JButton getBtnEdit() {
+		return btnEdit;
+	}
+
+	public JButton getBtnDelete() {
+		return btnDelete;
+	}
+	
 }

@@ -15,8 +15,6 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class CataloguePanel extends JPanel {
 	private JButton btnLogIn;
