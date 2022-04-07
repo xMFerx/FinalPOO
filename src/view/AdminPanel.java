@@ -33,6 +33,7 @@ public class AdminPanel extends JPanel {
 	private JTable tables;
 	private JTextField txtMessage;
 	private JButton btnGoBack;
+	private JButton btnTotals;
 
 
 	/**
@@ -182,10 +183,28 @@ public class AdminPanel extends JPanel {
 		btnGoBack.setBounds(46, 30, 187, 52);
 		add(btnGoBack);
 		
+		btnTotals = new JButton("Ver Totales");
+		btnTotals.setFont(new Font("Saudagar", Font.PLAIN, 18));
+		btnTotals.setBounds(107, 621, 127, 29);
+		btnTotals.setVisible(false);
+		add(btnTotals);
+		
 		
 	}
 
 	
+
+	public JButton getBtnTotals() {
+		return btnTotals;
+	}
+
+
+
+	public void setBtnTotals(JButton btnTotals) {
+		this.btnTotals = btnTotals;
+	}
+
+
 
 	public JButton getBtnSaveEdit() {
 		return btnSaveEdit;

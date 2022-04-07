@@ -9,6 +9,7 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class SQLordersMethods extends SQLconnection{
@@ -43,5 +44,46 @@ public class SQLordersMethods extends SQLconnection{
 			}
 		}
 	}
+	
+	public boolean FindOrder(Orders ord)
+	{
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Connection con = getConnection();
+		
+		String sql = "SELECT * FROM orders WHERE Date=?";
+		
+		try 
+		{
+			ps = con.prepareStatement(sql);
+			ps.setDate(1, ord.getToday());
+			rs = ps.executeQuery();
+			
+			if (rs.next())
+			{
+				ord.setToday(rs.getDate("Date"));
+				ord.setIdOrder(rs.getInt("idOrder"));
+				ord.setTotal(rs.getFloat("ordTotal"));
+				ord.setIdCstm(rs.getInt("fkidCstm"));
+				return true;			
+			}
+			return false;
+		}catch(SQLException SQLex)
+		{
+			System.err.println(SQLex);
+			return false;
+		}finally
+		{
+			try 
+			{
+				con.close();				
+			}catch(SQLException SQLex2)
+			{
+				System.err.println(SQLex2);
+			}
+		}		
+	}
+	
+	
 
 }

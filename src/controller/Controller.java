@@ -60,6 +60,8 @@ public class Controller implements ActionListener{
 		VenUsuario = new UserWin();
 		VenProducto = new ProWin();
 		goToCatalogue();
+		goToAdmPanel();
+		
 				
 		System.out.println("Cargando...");		
 	}
@@ -399,6 +401,7 @@ public class Controller implements ActionListener{
 		
 		if(e.getSource() == VenPrincipal.getPanelAdmin().getBtnUsersList())
 		{
+			VenPrincipal.getPanelAdmin().getBtnTotals().setVisible(false);
 			AdmTables =1;
 			DefaultTableModel model = SQLAdmins.getUsers();
 			TableUsers(model);
@@ -428,6 +431,7 @@ public class Controller implements ActionListener{
 		
 		if(e.getSource() == VenPrincipal.getPanelAdmin().getBtnProducts())
 		{
+			VenPrincipal.getPanelAdmin().getBtnTotals().setVisible(false);
 			AdmTables =2;
 			DefaultTableModel model = SQLAdmins.getProducts();
 			TableUsers(model);
@@ -452,12 +456,35 @@ public class Controller implements ActionListener{
 		        }
 		    });
 		}		
+		
 		if(e.getSource() == VenPrincipal.getPanelAdmin().getBtnSales())
 		{
 			AdmTables=3;
 			DefaultTableModel model = SQLAdmins.getSales();
 			TableUsers(model);
 			VenPrincipal.getPanelAdmin().getTables().setAutoCreateRowSorter(true);			
+			VenPrincipal.getPanelAdmin().getBtnTotals().setVisible(true);
+		}
+		if(e.getSource() == VenPrincipal.getPanelAdmin().getBtnTotals())
+		{
+			float totalDate = 0;
+    		String Date = "";
+    		DefaultTableModel model2 = new DefaultTableModel();
+			model2.addColumn("Fecha");
+			model2.addColumn("Total");
+    		for(int i=0; i< VenPrincipal.getPanelAdmin().getTables().getRowCount(); i++)
+    		{
+    			if(Date.equals(VenPrincipal.getPanelAdmin().getTables().getValueAt(i, 1).toString()))
+    			{    				
+    				totalDate += Float.parseFloat(VenPrincipal.getPanelAdmin().getTables().getValueAt(i, 2).toString());
+    			}else if(Date != "")
+    			{
+    				model2.addRow(new Object [] {Date, (totalDate)});
+    				totalDate = 0;
+    			}
+    			Date = VenPrincipal.getPanelAdmin().getTables().getValueAt(i, 1).toString(); 			
+    		}	
+    		TableUsers(model2);	
 		}
 		
 		/*
@@ -820,6 +847,7 @@ public class Controller implements ActionListener{
 		VenPrincipal.getPanelAdmin().getBtnUsersList().addActionListener(this);
 		VenPrincipal.getPanelAdmin().getBtnSaveEdit().addActionListener(this);
 		VenPrincipal.getPanelAdmin().getBtnGoBack().addActionListener(this);
+		VenPrincipal.getPanelAdmin().getBtnTotals().addActionListener(this);
 	}
 	
 	public void goToUserPanel()
