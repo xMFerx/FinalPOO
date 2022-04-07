@@ -10,7 +10,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.JScrollPane;
+
+/**
+ * Ventana de información de productos invocada
+ * desde el panel de administrador
+ * @see: AdminPanel
+ * 
+ */
 
 public class ProWin extends JFrame {
 

@@ -1,7 +1,12 @@
 package model;
 
+/**
+ * Clase con los metodos a usar para los productos en
+ * la base de datos de MySQL
+ * @see: SQLconnection
+ * 	 
+ */
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

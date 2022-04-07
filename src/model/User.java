@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Clase para los usuarios o clientes  
+ * @see: clase Person
+ * 	 
+ */
 public class User extends Person{
 	
 	public User() {

@@ -37,7 +37,13 @@ public class TextPrompt extends JLabel
 		this(text, component, Show.ALWAYS);
 	}
 
-	public TextPrompt(String text, JTextComponent component, Show show)
+    /**
+     *
+     * @param text
+     * @param component
+     * @param show
+     */
+    public TextPrompt(String text, JTextComponent component, Show show)
 	{
 		this.component = component;
 		setShow( show );

@@ -2,8 +2,6 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,7 +12,13 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
+/**
+ * Panel de administrador desde el cual se puede editar la
+ * información en la base de datos con la aplicación en ejecución
+ * 
+ * @see: MainWin, UserWin, UserPanel
+ * 
+ */
 public class AdminPanel extends JPanel {
 	private JTextField txtUserName;
 	private JTextField txtName;
@@ -217,9 +221,11 @@ public class AdminPanel extends JPanel {
 		this.btnGoBack = btnGoBack;
 	}
 
-
-
-	public JTextField getTxtMessage() {
+    /**
+     *
+     * @return
+     */
+    public JTextField getTxtMessage() {
 		return txtMessage;
 	}
 

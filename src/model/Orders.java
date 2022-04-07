@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Clase para las ventas 
+ *  	 
+ */
+
 import java.sql.Date;
 
 public class Orders {
@@ -41,7 +46,11 @@ public class Orders {
 		return idCstm;
 	}
 
-	public void setIdCstm(int idCstm) {
+    /**
+     *
+     * @param idCstm
+     */
+    public void setIdCstm(int idCstm) {
 		this.idCstm = idCstm;
 	}
 	

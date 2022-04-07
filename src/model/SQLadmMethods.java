@@ -1,5 +1,12 @@
 package model;
 
+/**
+ * Clase con los metodos a usar para los administradores 
+ * la interfaz de Administradores en la base de datos de MySQL
+ * @see: SQLconnection, view.AdminPanel, controller.Controller
+ * 	 
+ */
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

@@ -15,7 +15,12 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-
+/**
+ * Panel principal que contiene los productos y acceso a los
+ * paneles de inicio de sesion y carrito
+ * @see: MainWin	
+ * 
+ */
 public class CataloguePanel extends JPanel {
 	private JButton btnLogIn;
 	private JButton btnMyProfile;
@@ -643,9 +648,11 @@ public class CataloguePanel extends JPanel {
 		return txtCategory3;
 	}
 
-
-
-	public void setTxtCategory3(JTextField txtCategory3) {
+    /**
+     *
+     * @param txtCategory3
+     */
+    public void setTxtCategory3(JTextField txtCategory3) {
 		this.txtCategory3 = txtCategory3;
 	}
 
@@ -703,9 +710,11 @@ public class CataloguePanel extends JPanel {
 		return txtCategory4;
 	}
 
-
-
-	public void setTxtCategory4(JTextField txtCategory4) {
+    /**
+     *
+     * @param txtCategory4
+     */
+    public void setTxtCategory4(JTextField txtCategory4) {
 		this.txtCategory4 = txtCategory4;
 	}
 
@@ -763,9 +772,11 @@ public class CataloguePanel extends JPanel {
 		return btnC4B5;
 	}
 
-
-
-	public void setBtnC4B5(JButton btnC4B5) {
+    /**
+     *
+     * @param btnC4B5
+     */
+    public void setBtnC4B5(JButton btnC4B5) {
 		this.btnC4B5 = btnC4B5;
 	}
 
@@ -831,7 +842,11 @@ public class CataloguePanel extends JPanel {
 		this.btnBannerOp1 = btnBannerOp1;
 	}
 
-	public JButton getBtnBannerOp2() {
+    /**
+     *
+     * @return
+     */
+    public JButton getBtnBannerOp2() {
 		return btnBannerOp2;
 	}
 

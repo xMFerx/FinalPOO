@@ -15,16 +15,19 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTextPane;
-import javax.swing.Renderer;
 
 import java.awt.Dimension;
 
+/**
+ * Panel de carro de compra 
+ * @see: MainWin	
+ * 
+ */
 public class MainCartPanel extends JPanel {
 	private JTextField txtShoppingCart;
 	private JButton btnConShopping;
@@ -184,9 +187,11 @@ setLayout(null);
 
 	}
 	
-	
-	
-	public DefaultTableModel getModel() {
+    /**
+     *
+     * @return
+     */
+    public DefaultTableModel getModel() {
 		return model;
 	}
 

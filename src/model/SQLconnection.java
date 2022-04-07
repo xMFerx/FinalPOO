@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Clase con la conexión a la base de datos local
+ * 	 
+ */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

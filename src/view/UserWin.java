@@ -1,5 +1,12 @@
 package view;
 
+/**
+ * Ventana con la información de usuario que se obtiene
+ * desde el perfil del administrador, contiene información sensible
+ * @see: AdminPanel, controller.Controller
+ * 	 
+ */
+
 import java.awt.BorderLayout;
 import java.awt.Font;
 

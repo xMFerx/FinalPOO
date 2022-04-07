@@ -1,4 +1,8 @@
 package model;
+/**
+ * Clase de los productos 
+ * 	 
+ */
 
 public class Products {
 	private int id;
@@ -16,7 +20,11 @@ public class Products {
 		discount = 0;
 	}
 
-	public int getDiscount() {
+    /**
+     *
+     * @return
+     */
+    public int getDiscount() {
 		return discount;
 	}
 
@@ -64,7 +72,11 @@ public class Products {
 		QtSold = qtSold;
 	}
 
-	public float getProfit() {
+    /**
+     *
+     * @return
+     */
+    public float getProfit() {
 		return profit;
 	}
 

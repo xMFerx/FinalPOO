@@ -1,6 +1,10 @@
 package model;
 
-
+/**
+ * Clase abstracta para las personas que usarian la aplicación 
+ * @see: clases User y Admin
+ * 	 
+ */
 import java.sql.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

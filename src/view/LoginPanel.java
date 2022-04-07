@@ -10,7 +10,11 @@ import javax.swing.border.LineBorder;
 import javax.swing.JPasswordField;
 import java.awt.Font;
 import javax.swing.ImageIcon;
-
+/**
+ * Panel de inicio de sesión
+ * @see: MainWin	
+ * 
+ */
 public class LoginPanel extends JPanel {
 	private JTextField txtUser;
 	private JPasswordField passwordField;

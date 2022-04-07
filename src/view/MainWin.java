@@ -5,11 +5,16 @@ import java.awt.Dimension;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
-
+/**
+ * Ventana principal que inicializa los distintos paneles
+ * contiene métodos para intercambiar los paneles dependiendo
+ * de la información que se requiera
+ * @see: controller.Controller
+ * 
+ */
 public class MainWin extends JFrame {
 
 	private SignUpPanelUsers PanelRegistro;

@@ -1,5 +1,11 @@
 package model;
 
+/**
+ * Clase con los metodos a usar para los usuarios en
+ * la base de datos de MySQL
+ * @see: SQLconnection
+ * 	 
+ */
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

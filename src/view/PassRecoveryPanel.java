@@ -12,6 +12,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 
+/**
+ * Panel de recuperación de contraseñas
+ * @see: MainWin	
+ * 
+ */
 public class PassRecoveryPanel extends JPanel {
 	private JTextField textField;
 	private JTextField textField2;

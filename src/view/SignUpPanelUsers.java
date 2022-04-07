@@ -11,6 +11,11 @@ import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.JButton;
 
+/**
+ * Panel de registro para nuevos Usuarios
+ * @see: MainWin	
+ * 
+ */
 public class SignUpPanelUsers extends JPanel {
 	private JTextField txtUserName;
 	private JLabel lblPasswordReq1;

@@ -27,6 +27,13 @@ import view.MainWin;
 import view.ProWin;
 import view.UserWin;
 
+/**
+ * Clase controlador principal de la aplicación, realiza las conexiones de los
+ * paneles con las clases y metodos de SQL además del comportamiento de los botones
+ * @author: Sam Carrillo - Fernanda Pérez
+ * 	 
+ */
+
 public class Controller implements ActionListener{
 	
 	private User usr = new User();
@@ -79,7 +86,7 @@ public class Controller implements ActionListener{
 				}
 				else
 				{
-					VenPrincipal.getPanelAcceso().getTxtMessage().setText("Verifica tu usuario y contraseña");
+					VenPrincipal.getPanelAcceso().getTxtMessage().setText("Verifica tu usuario y contraseï¿½a");
 				}
 			}else
 			{
@@ -97,7 +104,7 @@ public class Controller implements ActionListener{
 				}
 				else
 				{
-					VenPrincipal.getPanelAcceso().getTxtMessage().setText("Verifica tu usuario y contraseña");
+					VenPrincipal.getPanelAcceso().getTxtMessage().setText("Verifica tu usuario y contraseï¿½a");
 				}
 			}
 		}		
@@ -143,7 +150,7 @@ public class Controller implements ActionListener{
 					usr.setRegisterDate(usr.getToday().toString());
 					if(usr.setPassword(String.valueOf(VenPrincipal.getPanelRegistro().getPasswordField().getPassword())))
 					{
-						VenPrincipal.getPanelRegistro().getTxtMessage().setText("Contraseña invalida");	
+						VenPrincipal.getPanelRegistro().getTxtMessage().setText("Contraseï¿½a invalida");	
 					}
 				    else
 				    {
@@ -551,7 +558,7 @@ public class Controller implements ActionListener{
 				usr.setbirthday(Date.valueOf(VenUsuario.getTxtBirthday().getText()));
 				if(usr.setPassword(VenUsuario.getTxtPassword().getText()))
 				{
-					VenUsuario.getTxtMessage().setText("Contraseña Invalida");
+					VenUsuario.getTxtMessage().setText("Contraseï¿½a Invalida");
 				}else {
 					if(SQLCustomers.ModifyUser(usr))
 					{
@@ -665,6 +672,11 @@ public class Controller implements ActionListener{
 	/*
 	 * Initialize components 
 	 */
+
+    /**
+     *
+     */
+
 	public void goToPanelRecPass()
 	{
 		VenPrincipal.IniPanelRecPass();
